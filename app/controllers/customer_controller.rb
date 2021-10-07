@@ -4,4 +4,8 @@ class CustomerController < ApplicationController
         render :home
     end
 
+    def workerhome
+        render :workerhome
+    end
+
 end
