@@ -1,5 +1,23 @@
 <h1>Customer home page</h1>
 
+<ul class="navbar-nav">
+      <% if customer_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Hi, #{current_customer.email}", edit_customer_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign Up', new_customer_registration_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+
 <p>
   <%= link_to 'For Workers', workerhome_path %>
 </p>
