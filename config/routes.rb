@@ -6,5 +6,4 @@ Rails.application.routes.draw do
 
   get 'home/worker', to: 'customer#workerhome', as: "workerhome"
 
-
 end
