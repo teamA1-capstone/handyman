@@ -15,6 +15,7 @@ kirk = Customer.create!(
     city: 'Riverside',
     state: 'Iowa',
     zip_code: '52327'
+)
 
 builder_bob = Worker.create!(
     email: 'builder@email.com',
