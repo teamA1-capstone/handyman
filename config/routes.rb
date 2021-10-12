@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   
   get 'home', to: 'customer#home', as: 'home'
 
-  get 'home/worker', to: 'customer#workerhome', as: "workerhome"
+  get 'home/worker', to: 'worker#home', as: 'worker_home'
+
+  get 'home/customer_profile', to: 'customer#customer_profile', as: 'customer_profile'
 
 end

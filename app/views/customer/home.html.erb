@@ -1,10 +1,13 @@
 <h1>Customer home page</h1>
-
+<p>
 <ul class="navbar-nav">
       <% if customer_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Hi, #{current_customer.email}", edit_customer_registration_path, class: 'nav-link' %>
+          <%= link_to "Hi, #{current_customer.first_name}", edit_customer_registration_path, class: 'nav-link' %>
         </li>
+        <p>
+        <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
+        </p>
         <li class="nav-item">
           <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
         </li>
@@ -17,9 +20,9 @@
         </li>
       <% end %>
     </ul>
-
+</p>
 <p>
-  <%= link_to 'For Workers', workerhome_path %>
+  <%= link_to 'For Workers', worker_home_path, class: 'btn btn-primary' %>
 </p>
 
 

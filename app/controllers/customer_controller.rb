@@ -4,8 +4,8 @@ class CustomerController < ApplicationController
         render :home
     end
 
-    def workerhome
-        render :workerhome
+    def customer_profile
+        render :customer_profile
     end
 
 end
