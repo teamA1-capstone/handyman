@@ -1,0 +1,69 @@
+<h1><%= current_worker.first_name %>'s Profile</h1>
+
+<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
+    <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Email Address</th>
+    </tr>
+  </thead>
+
+    <tbody>
+        <tr>
+        <td><%= current_worker.first_name %> <%= current_worker.last_name %></td>
+        <td><%= current_worker.email %></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
+    <thead class="thead-dark">
+        <tr>
+        <th>Street Address</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+        <td><%= current_worker.street_address %></td>
+        </tr>
+        <thead class="thead-dark">
+            <tr>
+            <th>City/State</th>
+            </tr>
+        </thead>
+        <tr>
+        <td><%= current_worker.city %>, <%= current_worker.state %></td>
+        </tr>
+        <thead class="thead-dark">
+            <tr>
+            <th>Zip Code</th>
+            </tr>
+        </thead>
+        <tr>
+        <td><%= current_worker.zip_code %></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
+    <thead class="thead-dark">
+    <tr>
+      <th>Specialty</th>
+    </tr>
+  </thead>
+
+    <tbody>
+        <tr>
+        <td><%= current_worker.specialty %></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>
+    <%= link_to 'Edit Profile',edit_worker_registration_path(current_worker), class: 'btn btn-primary' %>
+</p>
+<p>
+    <%= link_to 'Home',worker_home_path, class: 'btn btn-primary' %>
+</p>
