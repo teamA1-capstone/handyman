@@ -1,5 +1,6 @@
-<h1>Worker home page<h1>
+<h1>Worker home page</h1>
 
+<p>
 <ul class="navbar-nav">
       <% if worker_signed_in? %>
         <li class="nav-item">
@@ -17,6 +18,7 @@
         </li>
       <% end %>
     </ul>
+</p>
 
 <p>
   <%= link_to 'Customer Home', home_path, class: 'btn btn-primary'%>
