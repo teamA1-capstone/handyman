@@ -28,3 +28,15 @@ builder_bob = Worker.create!(
     zip_code: '38002',
     specialty: 'construction'
 )
+
+hill_jack = Worker.create!(
+    email: 'hill@email.com',
+    password: 'password',
+    first_name: 'Jack',
+    last_name: 'hill',
+    street_address: '123 Water Well',
+    city: 'Crown',
+    state: 'Hill',
+    zip_code: '38765',
+    specialty: 'Electrician'
+)

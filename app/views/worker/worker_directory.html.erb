@@ -1,0 +1,29 @@
+<h1>Available Workers</h1>
+
+<table class="table table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+        <th>Name</th>
+        <th>Specialty</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @worker.each do |w| %>
+      
+      <tr>
+        <td><%= w.first_name %> <%= w.last_name %></td>
+        <td><%= w.specialty %></td>
+        <td><%= link_to 'More Info' %></td>
+      </tr>
+       
+    <% end %>
+  </tbody>
+
+</table>
+
+<p>
+  <%= link_to 'Home', home_path, class: 'btn btn-primary'%>
+</p>
