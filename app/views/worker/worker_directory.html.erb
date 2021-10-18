@@ -1,4 +1,6 @@
-<h1>Available Workers</h1>
+<h1 class="text-center">Available Workers</h1>
+
+<p></p>
 
 <table class="table table-hover">
 
@@ -16,7 +18,7 @@
       <tr>
         <td><%= w.first_name %> <%= w.last_name %></td>
         <td><%= w.specialty %></td>
-        <td><%= link_to 'More Info' %></td>
+        <td><%= link_to 'More Info', worker_path(w) %></td>
       </tr>
        
     <% end %>

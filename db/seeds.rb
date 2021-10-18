@@ -33,10 +33,22 @@ hill_jack = Worker.create!(
     email: 'hill@email.com',
     password: 'password',
     first_name: 'Jack',
-    last_name: 'hill',
+    last_name: 'Hill',
     street_address: '123 Water Well',
     city: 'Crown',
     state: 'Hill',
     zip_code: '38765',
     specialty: 'Electrician'
+)
+
+doe_jane = Worker.create!(
+    email: 'jane@email.com',
+    password: 'password',
+    first_name: 'Jane',
+    last_name: 'Doe',
+    street_address: '189 Beauty Lane',
+    city: 'Grass',
+    state: 'Land',
+    zip_code: '47638',
+    specialty: 'Landscaping'
 )
