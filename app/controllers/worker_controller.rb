@@ -4,4 +4,8 @@ class WorkerController < ApplicationController
         render :worker_home
     end
 
+    def worker_profile
+        render :worker_profile
+    end
+
 end

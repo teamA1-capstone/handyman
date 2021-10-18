@@ -11,4 +11,7 @@ Rails.application.routes.draw do
 
   get 'home/customer_profile', to: 'customer#customer_profile', as: 'customer_profile'
 
+  get 'home/worker/worker_profile', to: 'worker#worker_profile', as: 'worker_profile'
+
+
 end
