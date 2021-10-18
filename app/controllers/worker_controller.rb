@@ -8,4 +8,9 @@ class WorkerController < ApplicationController
         render :worker_profile
     end
 
+    def index
+        @worker = Worker.all
+        render :worker_directory
+    end
+
 end

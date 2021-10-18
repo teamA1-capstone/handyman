@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   get 'home/worker/worker_profile', to: 'worker#worker_profile', as: 'worker_profile'
 
+  get 'home/worker_directory', to: 'worker#index', as: 'worker_directory'
 
 end
