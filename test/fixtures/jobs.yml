@@ -5,17 +5,17 @@
 #  id          :bigint           not null, primary key
 #  description :string
 #  name        :string
-#  type        :string
+#  speciality  :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
 one:
   name: MyString
-  type: 
+  speciality: MyString
   description: MyString
 
 two:
   name: MyString
-  type: 
+  speciality: MyString
   description: MyString

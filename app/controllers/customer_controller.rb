@@ -9,6 +9,7 @@ class CustomerController < ApplicationController
     end
 
     def jobs
+        @jobs = Job.all
         render :jobs
     end
 

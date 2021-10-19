@@ -1,1 +1,7 @@
 <h1> This is the skeleton of the Jobs board. </h1>
+
+<% @jobs.each do |job| %>
+    <p>Job Name: <%= job.name %></p>
+    <p>Job type: <%= job.speciality %></p>
+    <p>Job Description: <%= job.description %></p>
+<% end %>
