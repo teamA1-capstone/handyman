@@ -8,4 +8,8 @@ class CustomerController < ApplicationController
         render :customer_profile
     end
 
+    def jobs
+        render :jobs
+    end
+
 end
