@@ -1,0 +1,10 @@
+<h1>Post a Job Request</h1>
+
+<%= bootstrap_form_with model: @job, url: jobs_path, method: :post, local: true do |job| %>
+  
+  <%= job.text_field :name, label: 'Job Title'%>
+  <%= job.text_area :description %>
+  <%= job.select :speciality, $SPECIALTY_TYPES.prepend("select"), label: 'Specialty Preference' %>
+  <%= job.submit 'Submit Posting', class: 'btn btn-custom-color' %>
+
+<% end %>

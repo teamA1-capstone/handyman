@@ -27,4 +27,13 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  has_many(
+    :jobs,
+    class_name: 'Job',
+    foreign_key: 'customer_id',
+    inverse_of: :customer,
+    dependent: :destroy
+  )
 end

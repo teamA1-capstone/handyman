@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
+    
+    $SPECIALTY_TYPES = Array["Electrician", "Light Fixture", "Painter", "Plumber", "Sound System"]
+  
     before_action :configure_permitted_parameters, if:  :devise_controller?
-
-
-
 
     protected
 
