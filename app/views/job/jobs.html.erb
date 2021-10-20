@@ -7,6 +7,8 @@
     <p>Job Description: <%= job.description %></p>
 <% end %>
 
+<% if customer_signed_in?%>
 <p>
   <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
 </p>
+<% end %>

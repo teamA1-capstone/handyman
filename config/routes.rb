@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'home', to: 'customer#home', as: 'home'
   get 'home/customer_profile', to: 'customer#customer_profile', as: 'customer_profile'
   
-  get 'home/jobs', to: 'job#jobs', as: 'jobs'
+  get '/home/jobs', to: 'job#jobs', as: 'jobs'
   post '/home/jobs', to: 'job#create'
   get '/home/jobs/new', to: 'job#new', as: 'new_job'
 
