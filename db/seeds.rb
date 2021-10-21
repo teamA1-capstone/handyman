@@ -56,5 +56,6 @@ doe_jane = Worker.create!(
 job1 = Job.create!(   
     name: 'Toilet Fix', 
     speciality: 'Plumbing',
-    description: 'My toilet has not been flushing. It makes a weird noise and does not flush'
+    description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
+    customer: kirk
 )
