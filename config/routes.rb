@@ -25,4 +25,6 @@ Rails.application.routes.draw do
 
   get 'home/worker_directory/:id', to: 'worker#show', as: 'worker'
 
+  get 'home/jobs', to: 'customer#jobs', as: 'jobs'
+
 end

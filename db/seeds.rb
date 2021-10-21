@@ -52,3 +52,9 @@ doe_jane = Worker.create!(
     zip_code: '47638',
     specialty: 'Landscaping'
 )
+
+job1 = Job.create!(   
+    name: 'Toilet Fix', 
+    speciality: 'Plumbing',
+    description: 'My toilet has not been flushing. It makes a weird noise and does not flush'
+)
