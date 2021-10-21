@@ -1,7 +1,21 @@
-<h1> This is the skeleton of the Jobs board. </h1>
+<h1>Job Board. </h1>
 
-<% @jobs.each do |job| %>
-    <p>Job Name: <%= job.name %></p>
-    <p>Job type: <%= job.speciality %></p>
-    <p>Job Description: <%= job.description %></p>
+<% @jobs.each_with_index do |job, index| %>
+  <p>
+    <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <%= job.name %>
+    </a>
+  </p>
+
+  <div class="collapse" id="collapseExample<%= index %>">
+    <div class="card card-body">
+          <% @jobs.each do |job| %>
+            <p>Job Name: <%= job.name %></p>
+            <p>Job type: <%= job.speciality %></p>
+            <p>Job Description: <%= job.description %></p>
+          <% end %>
+    </div>
+  </div>
+
 <% end %>
+
