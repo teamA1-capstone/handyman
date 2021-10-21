@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  as :customers do
+    root to: 'worker#home', as: 'customer_root'
+  end
+
+  as :workers do
+    root to: 'worker#home', as: 'worker_root'
+  end
+
   devise_for :workers
   devise_for :customers
   
@@ -9,5 +17,13 @@ Rails.application.routes.draw do
   get 'home/worker', to: 'worker#home', as: 'worker_home'
 
   get 'home/customer_profile', to: 'customer#customer_profile', as: 'customer_profile'
+
+  get 'home/worker/worker_profile', to: 'worker#worker_profile', as: 'worker_profile'
+
+  get 'home/worker_directory', to: 'worker#index', as: 'worker_directory'
+
+  get 'home/worker_directory/:id', to: 'worker#show', as: 'worker'
+
+  get 'home/jobs', to: 'customer#jobs', as: 'jobs'
 
 end

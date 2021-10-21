@@ -28,3 +28,33 @@ builder_bob = Worker.create!(
     zip_code: '38002',
     specialty: 'construction'
 )
+
+hill_jack = Worker.create!(
+    email: 'hill@email.com',
+    password: 'password',
+    first_name: 'Jack',
+    last_name: 'Hill',
+    street_address: '123 Water Well',
+    city: 'Crown',
+    state: 'Hill',
+    zip_code: '38765',
+    specialty: 'Electrician'
+)
+
+doe_jane = Worker.create!(
+    email: 'jane@email.com',
+    password: 'password',
+    first_name: 'Jane',
+    last_name: 'Doe',
+    street_address: '189 Beauty Lane',
+    city: 'Grass',
+    state: 'Land',
+    zip_code: '47638',
+    specialty: 'Landscaping'
+)
+
+job1 = Job.create!(   
+    name: 'Toilet Fix', 
+    speciality: 'Plumbing',
+    description: 'My toilet has not been flushing. It makes a weird noise and does not flush'
+)

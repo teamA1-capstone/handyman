@@ -1,5 +1,5 @@
-<h1> Customer Sign-in Page </h1>
-<%= link_to "Home", home_path %>
+<h1> Worker Sign-in Page </h1>
+<%= link_to "Home", worker_home_path %>
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -25,4 +25,4 @@
   </div>
 <% end %>
 
-<%= render "customers/shared/links" %>
+<%= render "workers/shared/links" %>
