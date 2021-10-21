@@ -4,7 +4,7 @@
   
   <%= job.text_field :name, label: 'Job Title'%>
   <%= job.text_area :description %>
-  <%= job.select :speciality, $SPECIALTY_TYPES.prepend("select"), label: 'Specialty Preference' %>
+  <%= job.select :speciality, $SPECIALTY_TYPES, label: 'Specialty Preference' %>
   <%= job.submit 'Submit Posting', class: 'btn btn-custom-color' %>
 
 <% end %>
