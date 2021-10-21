@@ -16,5 +16,12 @@
 
  @import "rails_bootstrap_forms";
  @import "bootswatch/dist/yeti/variables";
+
+ $theme-colors: (
+  "custom-color": #456C97
+);
+
+
  @import "bootstrap/scss/bootstrap";
  @import "bootswatch/dist/yeti/bootswatch";
+
