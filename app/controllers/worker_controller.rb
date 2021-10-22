@@ -10,8 +10,20 @@ class WorkerController < ApplicationController
     end
 
     def index
-        @worker = Worker.all
-        render :worker_directory
+      # $SPECIALTY_TYPES is a global array populated with every specialty type available.
+      # can be found in app/controllers/application_controller.rb
+      
+      # this is grabbing the extra data passed in the url and converting it to a integer
+      @index = params[:specialty_index].to_i
+
+      # -1 is the value passed when clicking the link to view all workers
+      if @index != -1
+        @workers_to_display = Worker.where({specialty: $SPECIALTY_TYPES.at(@index)})
+      else
+        @workers_to_display = Worker.all
+      end
+      
+      render :worker_directory
     end
     
     def show

@@ -18,17 +18,20 @@
               <li class="nav-item">
                 <%= link_to 'Handyman', home_path, class: 'navbar-brand', style: 'color:black'%>
               </li>
-              
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Services
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Electrician</a>
-                  <a class="dropdown-item" href="#">Light Fixture</a>
-                  <a class="dropdown-item" href="#">Painter</a>
-                  <a class="dropdown-item" href="#">Plumber</a>
-                  <a class="dropdown-item" href="#">Sound System</a>
+
+                  <!-- loop way of displaying the menu -->
+                  <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
+                    <p>
+                      <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
+                    </p>
+                  <% end %>
+                  <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
                 </div>
               </li>
               
