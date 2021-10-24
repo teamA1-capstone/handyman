@@ -26,7 +26,7 @@ builder_bob = Worker.create!(
     city: 'Memphis',
     state: 'TN',
     zip_code: '38002',
-    specialty: 'construction'
+    specialty: 'Plumber'
 )
 
 hill_jack = Worker.create!(
@@ -50,7 +50,7 @@ doe_jane = Worker.create!(
     city: 'Grass',
     state: 'Land',
     zip_code: '47638',
-    specialty: 'Landscaping'
+    specialty: 'Electrician'
 )
 
 job1 = Job.create!(   

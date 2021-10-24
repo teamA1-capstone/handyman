@@ -1,6 +1,7 @@
 class CustomerController < ApplicationController
 
     def home
+        $SWITCH = 1
         render :home
     end
 

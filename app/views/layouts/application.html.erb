@@ -11,6 +11,164 @@
   </head>
 
     <main role="main" class="container">
+    <% if $SWITCH == 1%>
+        <nav class="navbar navbar-expand-sm bg-light">
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to 'Handyman', home_path, class: 'navbar-brand', style: 'color:black'%>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <!-- loop way of displaying the menu -->
+                  <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
+                    <p>
+                      <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
+                    </p>
+                  <% end %>
+                  <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
+                </div>
+              </li>
+              
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Find a Handyman</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Are you a Handyman?', worker_home_path, class: 'nav-link' %>
+              </li>
+              <% if customer_signed_in? %>
+                <li class="nav-item ml-auto">
+                  <%= link_to "Hi, #{current_customer.first_name}", edit_customer_registration_path, class: 'nav-link' %>
+                </li>
+                <p>
+                <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
+                </p>
+                <li class="nav-item">
+                  <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item" style="float:right">
+                  <%= link_to 'Sign Up', new_customer_registration_path, class: 'nav-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
+      <% else %>
+        <nav class="navbar navbar-expand-sm bg-light">
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to 'Handyman', worker_home_path, class: 'navbar-brand', style: 'color:black'%>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'find a Job', jobs_path, class: 'nav-link'%>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Are you a Customer?', home_path, class: 'nav-link'%>
+              </li>
+            <% if worker_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Hi, #{current_worker.email}", edit_worker_registration_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Sign In', new_worker_session_path, class: 'nav-link'%>
+              </li>
+              <li class="nav-item" style="float:right">
+                <%= link_to 'Sign Up', new_worker_registration_path, class: 'nav-link'%>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </nav>
+        <% end %>
+
+    
+    
+    <%# <nav class="navbar navbar-expand-sm bg-light">
+
+      <div class="container-fluid">
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/home/worker">Services</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </nav> %>
+      
+      <%# <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav> %>
+      
+      <%# <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div> %>
       <%= yield %>
     </main>
 </html>
