@@ -22,7 +22,7 @@
 <% end %>
 
   <div style="margin-top:20px;">
-    <% if customer_signed_in? && $SWITCH == 0%>
+    <% if customer_signed_in? && $SWITCH == 1%>
       <p>
         <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
       </p>
