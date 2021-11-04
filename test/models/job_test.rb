@@ -3,9 +3,11 @@
 # Table name: jobs
 #
 #  id          :bigint           not null, primary key
+#  completed   :boolean
 #  description :string
+#  in_progress :boolean
 #  name        :string
-#  speciality  :string
+#  specialty   :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  customer_id :bigint
