@@ -17,6 +17,17 @@ kirk = Customer.create!(
     zip_code: '52327'
 )
 
+bob = Customer.create!(
+    email: 'bob@email.com',
+    password: 'password',
+    first_name: 'bob',
+    last_name: 'smith',
+    street_address: '1234 Apple Street',
+    city: 'Memphis',
+    state: 'Tennessee',
+    zip_code: '59548'
+)
+
 builder_bob = Worker.create!(
     email: 'builder@email.com',
     password: 'password',
@@ -55,7 +66,7 @@ doe_jane = Worker.create!(
 
 job1 = Job.create!(   
     name: 'Toilet Fix', 
-    speciality: 'Plumbing',
+    specialty: 'Plumbing',
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
     in_progress: false, 
@@ -64,7 +75,7 @@ job1 = Job.create!(
 
 job2 = Job.create!(   
     name: 'Light not working', 
-    speciality: 'Electrical',
+    specialty: 'Electrical',
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: bob,
     in_progress: false,
