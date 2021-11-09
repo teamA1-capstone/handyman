@@ -17,6 +17,7 @@ kirk = Customer.create!(
     zip_code: '52327'
 )
 
+
 bob = Customer.create!(
     email: 'bob@email.com',
     password: 'password',
@@ -26,6 +27,16 @@ bob = Customer.create!(
     city: 'Memphis',
     state: 'Tennessee',
     zip_code: '59548'
+
+spock = Customer.create!(
+    email: 'spock@email.com',
+    password: 'password',
+    first_name: 'Spock',
+    last_name: 'Vulcan',
+    street_address: '777 USS Enterprise',
+    city: 'Riverside',
+    state: 'Vulcan',
+    zip_code: '52327'
 )
 
 builder_bob = Worker.create!(
@@ -37,7 +48,9 @@ builder_bob = Worker.create!(
     city: 'Memphis',
     state: 'TN',
     zip_code: '38002',
-    specialty: 'Plumber'
+    specialty: 'Plumber', 
+    invisibility: 0
+
 )
 
 hill_jack = Worker.create!(
@@ -49,7 +62,8 @@ hill_jack = Worker.create!(
     city: 'Crown',
     state: 'Hill',
     zip_code: '38765',
-    specialty: 'Electrician'
+    specialty: 'Electrician', 
+    invisibility: 0
 )
 
 doe_jane = Worker.create!(
@@ -61,7 +75,8 @@ doe_jane = Worker.create!(
     city: 'Grass',
     state: 'Land',
     zip_code: '47638',
-    specialty: 'Electrician'
+    specialty: 'Electrician', 
+    invisibility: 0
 )
 
 job1 = Job.create!(   
@@ -77,7 +92,7 @@ job2 = Job.create!(
     name: 'Light not working', 
     specialty: 'Electrical',
     description: 'My light fixture is flickering and shutting off randomly.',
-    customer: bob,
+    customer: spock,
     in_progress: false,
     completed: false
 )
