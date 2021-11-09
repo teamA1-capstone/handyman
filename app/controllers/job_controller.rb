@@ -38,7 +38,7 @@ class JobController < ApplicationController
 
   def update
     @job = current_customer.jobs.find(params[:customer_id])
-    if @job.update(params.require(:job).permit(:Name, :description, :specialty))
+    if @job.update(params.require(:job).permit(:name, :description, :specialty))
       flash[:success] = "Job updated successfully"
       redirect_to my_jobs_path
     else
