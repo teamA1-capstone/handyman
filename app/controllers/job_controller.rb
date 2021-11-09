@@ -24,4 +24,13 @@ class JobController < ApplicationController
     end
     $SPECIALTY_TYPES.delete_at(0)
   end
+
+  def delete
+    @job = Job.find(params[:id])
+    @job.destroy
+    flash[:success] = "The job has been successfully destroied."
+    redirect_to jobs_path
+
+  end  
+
 end
