@@ -27,6 +27,7 @@ bob = Customer.create!(
     city: 'Memphis',
     state: 'Tennessee',
     zip_code: '59548'
+)
 
 spock = Customer.create!(
     email: 'spock@email.com',
