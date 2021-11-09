@@ -17,6 +17,18 @@ kirk = Customer.create!(
     zip_code: '52327'
 )
 
+
+bob = Customer.create!(
+    email: 'bob@email.com',
+    password: 'password',
+    first_name: 'bob',
+    last_name: 'smith',
+    street_address: '1234 Apple Street',
+    city: 'Memphis',
+    state: 'Tennessee',
+    zip_code: '59548'
+)
+
 spock = Customer.create!(
     email: 'spock@email.com',
     password: 'password',
