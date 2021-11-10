@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   get '/home/jobs', to: 'job#jobs', as: 'jobs'
   post '/home/jobs', to: 'job#create'
   get '/home/jobs/new', to: 'job#new', as: 'new_job'
-
-
+  
+  delete '/home/jobs/:id', to: 'job#delete', as: 'delete_job'
+  
   get 'home/worker', to: 'worker#home', as: 'worker_home'
   get 'home/worker/worker_profile', to: 'worker#worker_profile', as: 'worker_profile'
   
