@@ -17,6 +17,29 @@ kirk = Customer.create!(
     zip_code: '52327'
 )
 
+
+bob = Customer.create!(
+    email: 'bob@email.com',
+    password: 'password',
+    first_name: 'bob',
+    last_name: 'smith',
+    street_address: '1234 Apple Street',
+    city: 'Memphis',
+    state: 'Tennessee',
+    zip_code: '59548'
+)
+
+spock = Customer.create!(
+    email: 'spock@email.com',
+    password: 'password',
+    first_name: 'Spock',
+    last_name: 'Vulcan',
+    street_address: '777 USS Enterprise',
+    city: 'Riverside',
+    state: 'Vulcan',
+    zip_code: '52327'
+)
+
 builder_bob = Worker.create!(
     email: 'builder@email.com',
     password: 'password',
@@ -26,7 +49,9 @@ builder_bob = Worker.create!(
     city: 'Memphis',
     state: 'TN',
     zip_code: '38002',
-    specialty: 'Plumber'
+    specialty: 'Plumber', 
+    invisibility: 0
+
 )
 
 hill_jack = Worker.create!(
@@ -38,7 +63,8 @@ hill_jack = Worker.create!(
     city: 'Crown',
     state: 'Hill',
     zip_code: '38765',
-    specialty: 'Electrician'
+    specialty: 'Electrician', 
+    invisibility: 0
 )
 
 doe_jane = Worker.create!(
@@ -50,12 +76,26 @@ doe_jane = Worker.create!(
     city: 'Grass',
     state: 'Land',
     zip_code: '47638',
-    specialty: 'Electrician'
+    specialty: 'Electrician', 
+    invisibility: 0
 )
 
 job1 = Job.create!(   
     name: 'Toilet Fix', 
-    speciality: 'Plumbing',
+    specialty: 'Plumbing',
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
-    customer: kirk
+    customer: kirk,
+    in_progress: false, 
+    completed: false
 )
+
+job2 = Job.create!(   
+    name: 'Light not working', 
+    specialty: 'Electrical',
+    description: 'My light fixture is flickering and shutting off randomly.',
+    customer: spock,
+    in_progress: false,
+    completed: false
+)
+
+

@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get 'home', to: 'customer#home', as: 'home'
   get 'home/customer_profile', to: 'customer#customer_profile', as: 'customer_profile'
   
+  get '/customer/customer_profile/my_jobs/', to: 'job#my_jobs', as: 'my_jobs'
+  get '/customer/customer_profile/my_jobs/edit/:customer_id', to: 'job#edit', as: 'edit'
+  patch '/customer/customer_profile/my_jobs/:customer_id', to: 'job#update', as: 'update_job'
+  put '/customer/customer_profile/my_jobs/:customer_id', to: 'job#update'
+
   get '/home/jobs', to: 'job#jobs', as: 'jobs'
   post '/home/jobs', to: 'job#create'
   get '/home/jobs/new', to: 'job#new', as: 'new_job'

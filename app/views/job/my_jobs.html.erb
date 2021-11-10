@@ -1,7 +1,11 @@
-<h1 class="header-center">Job Board</h1>
-<th></th>
+<h1 class="header-center">My Jobs</h1>
+
+
 <div class="posts">
   <% @jobs.each_with_index do |job, index| %>
+
+  <% if job.customer_id == current_customer.id%>
+  
     <div class="posting">
       <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
         <%= job.name %>
@@ -14,20 +18,12 @@
           <p><%= job.description %></p>
           <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
             <li><%= job.customer.email%></li>
+              <p> <%= link_to 'edit', edit_path(job), class: 'btn btn-custom-color' %> </p>
           </p>
-          <%# The Delete button allows users to remove a posted job from the job board.
-           This happens because delete_job_path takes the job id and calles the destroy 
-           function in the job_controller.
-           %>
-           <%# The button will show only when a customer is signed in and they have a job posted.%>
-          <% if customer_signed_in?%>
-            <% if job.customer_id == current_customer.id%>
-              <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
-            <% end %>
-          <% end %>
         </div>
       </div>
     </div>
+<% end %>
 
 <% end %>
 
@@ -40,6 +36,3 @@
   </div>
   
 </div>
-
-
-
