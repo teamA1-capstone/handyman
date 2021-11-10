@@ -28,7 +28,7 @@ class JobController < ApplicationController
   def delete
     @job = Job.find(params[:id])
     @job.destroy
-    flash[:success] = "The job has been successfully destroied."
+    flash[:success] = "The job has been successfully destroyed."
     redirect_to jobs_path
 
   end  
