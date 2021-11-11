@@ -82,7 +82,7 @@ doe_jane = Worker.create!(
 
 job1 = Job.create!(   
     name: 'Toilet Fix', 
-    specialty: 'Plumbing',
+    specialty: 'Plumber',
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
     in_progress: false, 
@@ -91,7 +91,7 @@ job1 = Job.create!(
 
 job2 = Job.create!(   
     name: 'Light not working', 
-    specialty: 'Electrical',
+    specialty: 'Electrician',
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: spock,
     in_progress: false,
