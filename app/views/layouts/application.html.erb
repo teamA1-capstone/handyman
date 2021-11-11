@@ -70,8 +70,20 @@
               <li class="nav-item">
                 <%= link_to 'Handyman', worker_home_path, class: 'navbar-brand', style: 'color:black'%>
               </li>
-              <li class="nav-item">
-                <%= link_to 'find a Job', jobs_path, class: 'nav-link'%>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                find a Job
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <!-- loop way of displaying the menu -->
+                  <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
+                    <p>
+                      <%= link_to $SPECIALTY_TYPES.at(index).to_s, job_type_path(index), class: 'dropdown-item'%>
+                    </p>
+                  <% end %>
+                  <%= link_to "See All", job_type_path(-1), class: 'dropdown-item'%>
+                </div>
               </li>
               <li class="nav-item">
                 <%= link_to 'Are you a Customer?', home_path, class: 'nav-link'%>
