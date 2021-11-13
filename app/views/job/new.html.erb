@@ -1,10 +1,151 @@
+<style>
+  img{
+    display: block;
+    float: left;
+    width: 30pt;
+    height: 30pt;
+    padding: 0px 2px;
+  }
+  
+  img.big{
+    width: 35pt;
+    height: 35pt;
+    padding: 0px 2px;
+  }
+
+  #star5{
+    float: none;
+  }
+
+  #job_name{
+    display: none;
+  }
+
+</style>
+
+
 <h1>Post a Job Request</h1>
 
 <%= bootstrap_form_with model: @job, url: jobs_path, method: :post, local: true do |job| %>
-  
-  <%= job.text_field :name, label: 'Job Title'%>
+  <%= job.text_field :name, label: 'Score'%>
+  <div id="rating">
+    <% i = 1 %>
+    <% while i < 6%>
+      <img src="<%= asset_path 'star-blue-outline.svg' %>" id='star<%= i%>' class='star'/>
+      <%i = i + 1%>
+    <% end %>
+  </div>
+
+  <br>
   <%= job.text_area :description %>
   <%= job.select :specialty, $SPECIALTY_TYPES, label: 'Specialty Preference' %>
   <%= job.submit 'Submit Posting', class: 'btn btn-custom-color' %>
 
 <% end %>
+
+<p id="rating-value"></p>
+
+<script>
+
+var img1 = document.getElementById('star1');
+var img2 = document.getElementById('star2');
+var img3 = document.getElementById('star3');
+var img4 = document.getElementById('star4');
+var img5 = document.getElementById('star5');
+
+const icons = [img1,img2,img3,img4,img5];
+
+for(let i = 0;i < 5;i++){
+  icons[i].addEventListener("mouseover", onHover);
+  icons[i].addEventListener("mouseout", onExit);
+  icons[i].addEventListener("click", onClick);
+}
+
+function onHover(event){
+  var star = event.target.id;
+  if(document.getElementById(star).className == "star-frozen"){
+    document.getElementById(star).className = "star-frozen big";
+  }
+  else{
+    document.getElementById(star).className = "star big";
+  }
+  
+  highlight(parseInt(star[star.length-1]));
+}
+
+function onExit(event){
+  var star = event.target.id;
+  if(document.getElementById(star).className == "star-frozen big"){
+    document.getElementById(star).className = "star-frozen";
+  }
+  if(document.getElementById(star).className == "star big"){
+    document.getElementById(star).className = "star"
+  }
+  removeHighlight();
+  
+}
+
+function onClick(event){
+  let id = event.target.id;
+  let className = event.target.className;
+  let starNum = parseInt(id[id.length-1])
+
+  if(className == "star big"){
+    freeze(id);
+  }
+  if(className == "star-frozen big"){
+    unfreeze(id);
+    removeHighlight();
+  }
+  setRating(starNum);
+  
+}
+
+function highlight(number){
+  while(number > 0){
+    document.getElementById("star"+number.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+    number = number - 1;
+  }
+}
+
+function removeHighlight(){
+    let number = 1;
+    
+    while(number < 6){
+      var img =  document.getElementById("star"+number.toString());
+      if(img.className != "star-frozen big"){
+        if(img.className != "star-frozen"){
+          img.src = "<%= asset_path 'star-blue-outline.svg'%>";
+        } 
+      }
+     
+      number = number + 1;
+    }
+}
+
+function freeze(id){
+  let i = parseInt(id[id.length-1]);
+
+  while(i > 0){
+    document.getElementById("star"+i.toString()).className = "star-frozen";
+    i = i - 1;
+  }
+}
+
+function unfreeze(id){
+  //passed in current star id, so add 1 to it to unfreeze the ones after
+  let i = parseInt(id[id.length-1]);
+  i = i + 1;
+
+  while(i < 6){
+    document.getElementById("star"+i.toString()).className = "star";
+    i = i + 1;
+  }
+}
+
+function setRating(rating){
+  document.getElementById("rating-value").innerHTML = rating;
+  document.getElementById('job_name').value = rating;
+}
+
+</script>
