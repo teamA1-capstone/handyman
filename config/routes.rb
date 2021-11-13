@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   
   post '/home/jobs', to: 'job#create'
   get '/home/jobs/new', to: 'job#new', as: 'new_job'
-  get '/home/jobs/:specialty_index', to: 'job#index', as: 'job_type'
+
+  get 'home/jobs/:specialty_index', to: 'job#index', as: 'job_type'
   
   delete '/home/jobs/:id', to: 'job#delete', as: 'delete_job'
   
