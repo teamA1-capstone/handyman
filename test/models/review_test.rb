@@ -26,12 +26,6 @@ require "test_helper"
 
 class ReviewTest < ActiveSupport::TestCase
 
-  test "fixtures are valid" do
-    reviews.each do |rev|
-      assert rev.valid?, rev.errors.full_messages.inspect
-    end
-  end
-
   test "skill rating should be an integer value" do
     review_one = reviews(:one)
     review_one.skill_rating = 3.5
