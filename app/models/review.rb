@@ -41,6 +41,14 @@ class Review < ApplicationRecord
     )
 
     def customer_name
-        
+        job.customer_name
+    end
+
+    def customer_first_name
+        job.customer_first_name
+    end
+
+    def customer_email
+        job.customer_email
     end
 end

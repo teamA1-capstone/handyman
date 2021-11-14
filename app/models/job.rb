@@ -35,4 +35,16 @@ class Job < ApplicationRecord
         inverse_of: :job,
         dependent: :destroy
       )
+
+      def customer_name
+        customer.name
+      end
+
+      def customer_email
+        customer.email
+      end
+
+      def customer_first_name
+        customer.first_name
+      end
 end
