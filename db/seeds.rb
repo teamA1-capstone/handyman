@@ -98,4 +98,13 @@ job2 = Job.create!(
     completed: false
 )
 
-
+rev1 = Review.create!(
+    headline: "This is a review",
+    body: "the worker was largely awful",
+    skill_rating: 3,
+    honesty_rating: 1,
+    reliability_rating: 1,
+    focused_rating: 1,
+    pictures: "",
+    job: job2
+)

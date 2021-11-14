@@ -27,4 +27,12 @@ class Job < ApplicationRecord
         foreign_key: 'customer_id',
         inverse_of: :jobs
       )
+
+      has_one(
+        :reviews,
+        class_name: 'Review',
+        foreign_key: 'job_id',
+        inverse_of: :job,
+        dependent: :destroy
+      )
 end

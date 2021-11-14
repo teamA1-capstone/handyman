@@ -67,3 +67,6 @@ gem "bootstrap_form", "~> 4.0"
 
 # Authentication
 gem 'devise'
+
+#allows easy file attachments
+gem 'carrierwave', '~> 2.0'
