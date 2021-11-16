@@ -86,7 +86,7 @@ job1 = Job.create!(
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
     in_progress: false, 
-    completed: false
+    completed: true
 )
 
 job2 = Job.create!(   

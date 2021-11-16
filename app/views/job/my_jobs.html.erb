@@ -1,10 +1,25 @@
+<style>
+
+ .hidden{
+    display: none;
+  }
+
+</style>
+
+
 <h1 class="header-center">My Jobs</h1>
 
 
-<div class="posts">
+<ul id="button-containter">
+  <button id="not-completed" type="button" class="btn btn-primary active">not started</button>
+  <button id="in-progress" type="button" class="btn btn-primary">in-progress</button>
+  <button id="completed" type="button" class="btn btn-primary">completed</button>
+</ul>
+
+<div id="posts not-completed">
   <% @jobs.each_with_index do |job, index| %>
 
-  <% if job.customer_id == current_customer.id%>
+  <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
   
     <div class="posting">
       <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -16,15 +31,10 @@
           <h3><%= job.customer.first_name%></h3>
           <p><%= job.specialty %></p>
           <p><%= job.description %></p>
-          <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
-            <li><%= job.customer.email%></li>
-              <p> <%= link_to 'edit', edit_path(job), class: 'btn btn-custom-color' %> </p>
-          </p>
         </div>
       </div>
     </div>
-<% end %>
-
+  <% end %>
 <% end %>
 
   <div style="margin-top:20px;">
@@ -34,5 +44,89 @@
       </p>
     <% end %>
   </div>
-  
 </div>
+
+<div id="posts completed" class="hidden">
+  <% @jobs.each_with_index do |job, index| %>
+
+  <% if job.customer_id == current_customer.id and job.completed == true%>
+  
+    <div class="posting">
+      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <%= job.name %>
+      </a>
+
+      <div class="collapse" id="collapseExample<%= index %>">
+        <div class="card card-body">
+          <h3><%= job.customer.first_name%></h3>
+          <p><%= job.specialty %></p>
+          <p><%= job.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<div id="posts in-progress" class="hidden">
+  <% @jobs.each_with_index do |job, index| %>
+
+  <% if job.customer_id == current_customer.id and job.in_progress == true%>
+  
+    <div class="posting">
+      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <%= job.name %>
+      </a>
+
+      <div class="collapse" id="collapseExample<%= index %>">
+        <div class="card card-body">
+          <h3><%= job.customer.first_name%></h3>
+          <p><%= job.specialty %></p>
+          <p><%= job.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<script>
+  var btn1 = document.getElementById('completed');
+  var btn2 = document.getElementById('not-completed');
+  var btn3 = document.getElementById('in-progress');
+
+  btn1.addEventListener("click", onClick);
+  btn2.addEventListener("click", onClick);
+  btn3.addEventListener("click", onClick);
+
+  function onClick(event){
+    let className = event.target.className;
+    let id = event.target.id;
+
+    if(id == "completed"){
+      document.getElementById("posts not-completed").className = "hidden"
+      document.getElementById("posts in-progress").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("not-completed").className = "btn btn-primary"
+      document.getElementById("in-progress").className = "btn btn-primary"
+      document.getElementById("posts completed").className = ""
+    }
+    else if(id == "in-progress"){
+      document.getElementById("posts not-completed").className = "hidden"
+      document.getElementById("posts completed").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("not-completed").className = "btn btn-primary"
+      document.getElementById("completed").className = "btn btn-primary"
+      document.getElementById("posts in-progress").className = ""
+    }
+    else{
+      document.getElementById("posts in-progress").className = "hidden"
+      document.getElementById("posts completed").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("in-progress").className = "btn btn-primary"
+      document.getElementById("completed").className = "btn btn-primary"
+      document.getElementById("posts not-completed").className = ""
+    }
+  }
+
+</script>

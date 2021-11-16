@@ -15,6 +15,8 @@ class JobController < ApplicationController
   def create
     @customer = Customer.find(current_customer.id)
     @job = @customer.jobs.build(params.require(:job).permit(:name, :description, :specialty))
+    @job.completed = false
+    @job.in_progress = true
     if @job.save
       flash[:success] = "New Job Posting added!"
       redirect_to jobs_url
