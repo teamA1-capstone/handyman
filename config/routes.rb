@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   get 'home/worker_directory/:specialty_index', to: 'worker#index', as: 'worker_directory'
   get 'home/worker_directory/:specialty_index/:id', to: 'worker#show', as: 'worker'
 
+  get '/search', to: 'worker#search'
+
 end

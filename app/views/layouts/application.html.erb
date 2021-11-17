@@ -44,7 +44,7 @@
               </li>
               <% if customer_signed_in? %>
                 <li class="nav-item ml-auto">
-                  <%= link_to "Hi, #{current_customer.first_name}", edit_customer_registration_path, class: 'nav-link' %>
+                  <%= link_to "Hi, #{current_customer.first_name}", nil, class: 'nav-link' %>
                 </li>
                 <p>
                 <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
@@ -52,6 +52,12 @@
                 <li class="nav-item">
                   <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
                 </li>
+                <nav class="navbar navbar-light bg-light justify-content-between">
+                  <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Find a worker" aria-label="Search">
+                    <a href="home/worker_directory/-1" class="btn btn-primary" role="button">Search</a>
+                  </form>
+                </nav>
               <% else %>
                 <li class="nav-item">
                   <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
