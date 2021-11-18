@@ -17,7 +17,11 @@ class WorkerController < ApplicationController
       @index = params[:specialty_index].to_i
 
       # -1 is the value passed when clicking the link to view all workers
-      if @index != -1
+      if params[:sort] == "first_name"
+        @workers_to_display = Worker.order(params[:sort])
+      elsif params[:sort] == "last_name"
+        @workers_to_display = Worker.order(params[:sort])
+      elsif @index != -1
         @workers_to_display = Worker.where({specialty: $SPECIALTY_TYPES.at(@index)})
       else
         @workers_to_display = Worker.all

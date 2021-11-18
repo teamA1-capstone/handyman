@@ -108,3 +108,16 @@ rev1 = Review.create!(
     pictures: "",
     job: job2
 )
+
+Frank_Honest = Worker.create!(
+    email: 'honest@email.com',
+    password: 'password',
+    first_name: 'Honest',
+    last_name: 'Frank',
+    street_address: '123 Boardwalk Lane',
+    city: 'Mono',
+    state: 'Poly',
+    zip_code: '12345',
+    specialty: 'Other', 
+    invisibility: 0
+)
