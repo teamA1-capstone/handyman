@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id                 :bigint           not null, primary key
+#  body               :text
+#  focused_rating     :integer
+#  headline           :string
+#  honesty_rating     :integer
+#  pictures           :json
+#  reliability_rating :integer
+#  skill_rating       :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  job_id             :bigint
+#
+# Indexes
+#
+#  index_reviews_on_job_id  (job_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (job_id => jobs.id)
+#
+
+one:
+  headline: MyString
+  body: MyText
+  skill_rating: 1
+  honesty_rating: 1
+  reliability_rating: 1
+  focused_rating: 1.5
+  pictures: {MyString}
+  customer: one
+
+two:
+  headline: MyString
+  body: MyText
+  skill_rating: 1
+  honesty_rating: 1
+  reliability_rating: 1
+  focused_rating: 1.45
+  pictures: {MyString}
+  customer: one

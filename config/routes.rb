@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   patch '/customer/customer_profile/my_jobs/:customer_id', to: 'job#update', as: 'update_job'
   put '/customer/customer_profile/my_jobs/:customer_id', to: 'job#update'
 
-  get '/customer/customer_profile/my_jobs/:job_id/new_review', to: 'review#new', as: 'new_review'
+  get '/customer/customer_profile/my_jobs/:job_id/new_review', to: 'reviews#new', as: 'new_review'
 
   get '/home/jobs', to: 'job#jobs', as: 'jobs'
   post '/home/jobs', to: 'job#create'

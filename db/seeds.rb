@@ -95,7 +95,16 @@ job2 = Job.create!(
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: spock,
     in_progress: false,
-    completed: false
+    completed: true
 )
 
-
+rev1 = Review.create!(
+    headline: "This is a review",
+    body: "the worker was largely awful",
+    skill_rating: 3,
+    honesty_rating: 1,
+    reliability_rating: 1,
+    focused_rating: 1,
+    pictures: "",
+    job: job1
+)
