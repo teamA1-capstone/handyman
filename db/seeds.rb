@@ -106,5 +106,5 @@ rev1 = Review.create!(
     reliability_rating: 1,
     focused_rating: 1,
     pictures: "",
-    job: job1
+    job: job2
 )
