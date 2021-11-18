@@ -11,20 +11,30 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  customer_id :bigint
+#  worker_id   :bigint
 #
 # Indexes
 #
 #  index_jobs_on_customer_id  (customer_id)
+#  index_jobs_on_worker_id    (worker_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (customer_id => customers.id)
+#  fk_rails_...  (worker_id => workers.id)
 #
 class Job < ApplicationRecord
     belongs_to(
         :customer,
         class_name: 'Customer',
         foreign_key: 'customer_id',
+        inverse_of: :jobs
+      )
+
+      belongs_to(
+        :worker,
+        class_name: 'Worker',
+        foreign_key: 'worker_id',
         inverse_of: :jobs
       )
 

@@ -85,7 +85,8 @@ job1 = Job.create!(
     specialty: 'Plumber',
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
-    in_progress: false, 
+    worker: hill_jack,
+    in_progress: true, 
     completed: false
 )
 
@@ -94,8 +95,9 @@ job2 = Job.create!(
     specialty: 'Electrician',
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: spock,
-    in_progress: false,
-    completed: false
+    worker: builder_bob,
+    in_progress: true,
+    completed: true
 )
 
 rev1 = Review.create!(
