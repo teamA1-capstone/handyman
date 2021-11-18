@@ -1,0 +1,23 @@
+<h3> Search Results</h3>
+
+<table class="table table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+        <th>Name</th>
+        <th>Specialty</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result|%>
+        <td><%= result.first_name %> <%= result.last_name %></td>
+        <td><%= result.specialty %></td>
+        <td><%= link_to 'More Info', worker_path(-1, result) %></td>
+    <% end %>
+  
+  </tbody>
+  
+
+</table>
