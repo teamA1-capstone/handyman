@@ -95,7 +95,7 @@ doe_jane = Worker.create!(
 
 job1 = Job.create!(   
     name: 'Toilet Fix', 
-    specialty: 'Plumbing',
+    specialty: 'Plumber',
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
     in_progress: false, 
@@ -105,7 +105,7 @@ job1 = Job.create!(
 
 job2 = Job.create!(   
     name: 'Light not working', 
-    specialty: 'Electrical',
+    specialty: 'Electrician',
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: spock,
     in_progress: false,
@@ -122,4 +122,17 @@ rev1 = Review.create!(
     focused_rating: 1,
     pictures: "",
     job: job2
+)
+
+Frank_Honest = Worker.create!(
+    email: 'honest@email.com',
+    password: 'password',
+    first_name: 'Honest',
+    last_name: 'Frank',
+    street_address: '123 Boardwalk Lane',
+    city: 'Mono',
+    state: 'Poly',
+    zip_code: '12345',
+    specialty: 'Other', 
+    invisibility: 0
 )
