@@ -51,18 +51,8 @@ class Review < ApplicationRecord
         job.customer_email
     end
 
-    # def rating
-    #     @total = skill_rating + honesty_rating + focused_rating + reliability_rating
-
-    #     if @total/16 > .8
-    #         5
-    #     elsif @total/16 > .6
-    #         4
-    #     elsif @total/16 > .4
-    #         3
-    #     elsif @total/16 > .2
-    #         2
-    #     else
-    #         1
-    # end
+    def average_rating
+        #out of 20 because there are four 5 star ratings summed up, with the highest score being 20
+        rating = (focused_rating + honesty_rating + skill_rating + reliability_rating).to_f/20
+    end
 end

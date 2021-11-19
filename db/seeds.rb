@@ -124,6 +124,17 @@ rev1 = Review.create!(
     job: job2
 )
 
+rev2 = Review.create!(
+    headline: "This is a review",
+    body: "the worker was largely awful",
+    skill_rating: 4,
+    honesty_rating: 4,
+    reliability_rating: 4,
+    focused_rating: 4,
+    pictures: "",
+    job: job1
+) 
+
 Frank_Honest = Worker.create!(
     email: 'honest@email.com',
     password: 'password',

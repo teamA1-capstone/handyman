@@ -54,6 +54,7 @@
     <tr>
         <th>Name</th>
         <th>Specialty</th>
+        <th>Rating</th>
         <th></th>
     </tr>
   </thead>
@@ -64,7 +65,9 @@
       <tr>
         <td><%= w.first_name %> <%= w.last_name %></td>
         <td><%= w.specialty%></td>
+        <td><%= w.stars%></td>
         <td><%= link_to 'More Info', worker_path(@index, w) %></td>
+
       </tr>
        
     <% end %>

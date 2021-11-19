@@ -38,17 +38,30 @@ class Worker < ApplicationRecord
     inverse_of: :worker
   )
 
-  # def getReviews
-  #   @jobs = this.jobs
-  #   @jobs.each_with_index |j, i|
-  #     @reviews = @reviews + j.reviews
-  #   end
+  def average_rating
+    result = 0.0
+    index = jobs.size()
+    
+    while index > 0
+      result = result + jobs[index-1].average_rating
+      index = index - 1
+    end
+    return result
+  end
 
-  #   @reviews
-  # end
-
-  # def getRating
-  #   reviews.rating
-  # end
-        
+  def stars
+    if(average_rating > 0.8)
+      return "5 Stars"
+    elsif (average_rating > 0.6)
+      return "4 Stars"
+    elsif (average_rating > 0.4)
+      return "3 Stars"
+    elsif (average_rating > 0.2)
+      return "2 Stars"
+    elsif (average_rating > 0.0)
+      return "1 Star"
+    else
+      return "No Reviews"
+    end
+  end
 end

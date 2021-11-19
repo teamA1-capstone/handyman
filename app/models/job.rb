@@ -57,4 +57,12 @@ class Job < ApplicationRecord
       def customer_first_name
         customer.first_name
       end
+
+      def average_rating
+        if reviews == nil
+          return 0.0
+        else
+          reviews.average_rating
+        end
+      end
 end
