@@ -1,3 +1,9 @@
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
+
 <h1 class="text-center">Available Workers</h1>
 
 <div class="posting">
@@ -65,7 +71,65 @@
       <tr>
         <td><%= w.first_name %> <%= w.last_name %></td>
         <td><%= w.specialty%></td>
-        <td><%= w.stars%></td>
+        <td>
+        <%# w.stars is calling a method within the worker model class %>
+        
+        <%= link_to worker_reviews_path(@index, w) do %>
+          <div style="inline-block;">
+            <% if w.stars == "5 Stars"%>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              
+            
+            <% elsif w.stars == "4 Stars" %>
+            
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+      
+            <% elsif w.stars == "3 Stars" %>
+            
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+            
+            <% elsif w.stars == "2 Stars" %>
+            
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+            
+            <% elsif w.stars == "1 Stars" %>
+          
+              <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+            
+            <% else %>
+            
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+              <img src= "<%= asset_path 'star-blue-outline.svg'%>"/>
+            
+            <% end %>
+              <span>(<%= w.number_of_ratings%>)</span>
+          </div>
+
+        <% end %>
+        </td>
         <td><%= link_to 'More Info', worker_path(@index, w) %></td>
 
       </tr>

@@ -49,6 +49,10 @@ class Worker < ApplicationRecord
     return result
   end
 
+  def number_of_ratings
+    return jobs.size()
+  end
+  
   def stars
     if(average_rating > 0.8)
       return "5 Stars"
