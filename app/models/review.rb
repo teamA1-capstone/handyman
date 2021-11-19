@@ -32,7 +32,6 @@ class Review < ApplicationRecord
     #only allows integer values to be assigned to these rating attributes
     validates :focused_rating, :skill_rating, :honesty_rating, :reliability_rating, numericality: { only_integer: true }
 
-
     belongs_to(
         :job,
         class_name: 'Job',

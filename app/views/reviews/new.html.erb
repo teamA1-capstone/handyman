@@ -1,0 +1,372 @@
+<html>
+
+<style>
+  img{
+    display: block;
+    float: left;
+    width: 30pt;
+    height: 30pt;
+    padding: 0px 2px;
+  }
+  
+  img.big{
+    width: 35pt;
+    height: 35pt;
+    padding: 0px 2px;
+  }
+
+  #review_skill_rating{
+    display: none;
+  }
+
+  #review_honesty_rating{
+    display: none;
+  }
+  
+  #review_reliability_rating{
+    display: none;
+  }
+
+  #review_focused_rating{
+    display: none;
+  }
+
+
+</style>
+
+<h1>Review Job Performance</h1>
+
+<body>
+
+<%= bootstrap_form_with model: @review, method: :post, url: create_review_path, local: true do |review| %>
+    <p>based on your experience, rate the worker in the following categories: </p>
+
+    <div class="field">
+        <%= review.number_field :skill_rating, label: "Worker Skill Level"%>
+    </div>
+    
+    <div id="rating">
+        <% i = 1 %>
+        <% while i < 6%>
+            <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+            <%i = i + 1%>
+        <% end %>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="field">
+        <%= review.number_field :reliability_rating, label: "How reliable was the Worker?"%>
+    </div>
+        
+    <div id="rating">
+        <% while i < 11%>
+            <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+            <%i = i + 1%>
+        <% end %>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="field">
+        <%= review.number_field :focused_rating, label: "How focused was the worker on the job?"%>
+    </div>
+       
+    <div id="rating">
+        <% while i < 16%>
+            <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+            <%i = i + 1%>
+        <% end %>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="field">
+        <%= review.number_field :honesty_rating, label: "How honest do you think the worker was with you?"%>
+    </div>
+
+    <div id="rating">
+        <% while i < 21%>
+            <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+            <%i = i + 1%>
+        <% end %>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="field">
+        <%= review.label "Tell us More about your experience."%>
+    </div>
+
+    <div class="field">
+        <%= review.text_field :headline, label: "Headline"%>
+    </div>
+
+    <div class="field">
+        <%= review.text_area :body%>
+    </div>
+
+    <div class="field">
+        <%= review.file_field :pictures, multiple: true %>
+    </div>
+
+    <%= review.submit "Submit Review"%>
+
+
+<%end%>
+
+<p class="mt-3">
+    <%= link_to 'Cancel', my_jobs_path, class: 'btn btn-outline-danger'%>
+<p>
+
+<script>
+
+const icons = [document.getElementById('1'),
+                document.getElementById('2'),
+                document.getElementById('3'),
+                document.getElementById('4'),
+                document.getElementById('5'),
+                document.getElementById('6'),
+                document.getElementById('7'),
+                document.getElementById('8'),
+                document.getElementById('9'),
+                document.getElementById('10'),
+                document.getElementById('11'),
+                document.getElementById('12'),
+                document.getElementById('13'),
+                document.getElementById('14'),
+                document.getElementById('15'),
+                document.getElementById('16'),
+                document.getElementById('17'),
+                document.getElementById('18'),
+                document.getElementById('19'),
+                document.getElementById('20')]
+
+for(let i = 0;i < 20;i++){
+  icons[i].addEventListener("mouseover", onHover);
+  icons[i].addEventListener("mouseout", onExit);
+  icons[i].addEventListener("click", onClick);
+}
+
+function onHover(event){
+  var star = event.target.id;
+  if(document.getElementById(star).className == "star-frozen"){
+    document.getElementById(star).className = "star-frozen big";
+  }
+  else{
+    document.getElementById(star).className = "star big";
+  }
+  
+  highlight(parseInt(star));
+}
+
+function onExit(event){
+  var star = event.target.id;
+  if(document.getElementById(star).className == "star-frozen big"){
+    document.getElementById(star).className = "star-frozen";
+  }
+  if(document.getElementById(star).className == "star big"){
+    document.getElementById(star).className = "star"
+  }
+  removeHighlight(parseInt(star));
+}
+
+function onClick(event){
+  let id = event.target.id;
+  let className = event.target.className;
+  let starNum = parseInt(id)
+
+  if(className == "star big"){
+    freeze(starNum);
+  }
+  if(className == "star-frozen big"){
+    unfreeze(starNum);
+    removeHighlight(starNum);
+  }
+  setRating(starNum);
+  
+}
+
+function highlight(number){
+    if(number > 0 && number < 6){
+        while(number > 0){
+            document.getElementById(number.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+            number = number - 1;
+        }
+    }
+    else if(number > 5 && number < 11){
+        while(number > 5){
+            document.getElementById(number.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+            number = number - 1;
+        }
+
+    }else if(number > 10 && number < 16){
+        while(number > 10){
+            document.getElementById(number.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+            number = number - 1;
+        }
+        
+    }else if(number > 15 && number < 21){
+        while(number > 15){
+            document.getElementById(number.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+            number = number - 1;
+        }   
+    }  
+}
+
+function removeHighlight(number){
+    if(number > 0 && number < 6){
+        number = 1;
+        while(number < 6){
+
+            var img = document.getElementById(number.toString());
+
+            if(img.className != "star-frozen big"){
+                if(img.className != "star-frozen"){
+                    img.src = "<%= asset_path 'star-blue-outline.svg'%>";
+                } 
+            }
+            number = number + 1;
+        }
+    }
+    else if(number > 5 && number < 11){
+        number = 6;
+        while(number < 11){
+
+            var img = document.getElementById(number.toString());
+
+            if(img.className != "star-frozen big"){
+                if(img.className != "star-frozen"){
+                    img.src = "<%= asset_path 'star-blue-outline.svg'%>";
+                } 
+            }
+            number = number + 1;
+        }
+
+    }
+    else if(number > 10 && number < 16){
+        number = 11;
+        while(number < 16){
+
+            var img = document.getElementById(number.toString());
+
+            if(img.className != "star-frozen big"){
+                if(img.className != "star-frozen"){
+                    img.src = "<%= asset_path 'star-blue-outline.svg'%>";
+                } 
+            }
+            number = number + 1;
+        }
+    }
+    else if(number > 15 && number < 21){
+        number = 16;
+        while(number < 21){
+
+            var img = document.getElementById(number.toString());
+
+            if(img.className != "star-frozen big"){
+                if(img.className != "star-frozen"){
+                    img.src = "<%= asset_path 'star-blue-outline.svg'%>";
+                } 
+            }
+            number = number + 1;
+        }
+    }
+}
+
+function freeze(id){
+    let number = id;
+    if(number > 0 && number < 6){
+        while(number > 0){
+            document.getElementById(number.toString()).className = "star-frozen";
+            number = number - 1;
+        }
+    }
+    else if(number > 5 && number < 11){
+        while(number > 5){
+            document.getElementById(number.toString()).className = "star-frozen";
+            number = number - 1;
+        }
+    } 
+    else if(number > 10 && number < 16){
+        while(number > 10){
+            document.getElementById(number.toString()).className = "star-frozen";
+            number = number - 1;
+        }
+    }
+    else if(number > 15 && number < 21){
+        while(number > 15){
+            document.getElementById(number.toString()).className = "star-frozen";
+            number = number - 1;
+        }
+    }
+}
+
+function unfreeze(id){
+    //passed in current star id, so add 1 to it to unfreeze the ones after
+    let number = id;
+    number = number + 1;
+
+    if(number > 0 && number < 6){
+        while(number < 6){
+            document.getElementById(number.toString()).className = "star";
+            number = number + 1;
+        }
+    }
+
+    else if(number > 5 && number < 11){
+        while(number < 11){
+            document.getElementById(number.toString()).className = "star";
+            number = number + 1;
+        }
+    }
+
+    else if(number > 10 && number < 16){
+        while(number < 16){
+            document.getElementById(number.toString()).className = "star";
+            number = number + 1;
+        }
+    }
+
+    else if(number > 15 && number < 21){
+        while(number < 21){
+            document.getElementById(number.toString()).className = "star";
+            number = number + 1;
+        }
+    }
+
+
+}
+
+function setRating(rating){
+    value = rating%5;
+    if(value==0){
+        value=5;
+    }
+
+    if(rating > 0 && rating < 6){
+        document.getElementById("review_skill_rating").value = value;
+    }
+    else if(rating > 5 && rating < 11){
+        document.getElementById("review_reliability_rating").value = value;
+    }
+    else if(rating > 10 && rating < 16){
+        document.getElementById("review_focused_rating").value = value;
+    }
+    else if(rating > 15 && rating < 21){
+        document.getElementById("review_honesty_rating").value = value;
+    }
+}
+
+</script>
+
+</body>
+</html>

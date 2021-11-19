@@ -29,4 +29,13 @@ class Worker < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  has_many(
+    :jobs,
+    class_name: 'Job',
+    foreign_key: 'worker_id',
+    inverse_of: :worker
+  )
+        
 end

@@ -40,6 +40,19 @@ spock = Customer.create!(
     zip_code: '52327'
 )
 
+dummy = Worker.create!(
+    email: 'dummy@email.com',
+    password: 'agfhjr16354',
+    first_name: 'dummy',
+    last_name: 'dummy',
+    street_address: 'dummy',
+    city: 'dummy',
+    state: 'dummy',
+    zip_code: 'dummy',
+    specialty: 'dummy', 
+    invisibility: 1
+)
+
 builder_bob = Worker.create!(
     email: 'builder@email.com',
     password: 'password',
@@ -86,7 +99,8 @@ job1 = Job.create!(
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
     in_progress: false, 
-    completed: false
+    completed: true,
+    worker: builder_bob
 )
 
 job2 = Job.create!(   
@@ -95,7 +109,8 @@ job2 = Job.create!(
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: spock,
     in_progress: false,
-    completed: false
+    completed: true,
+    worker: doe_jane
 )
 
 rev1 = Review.create!(
