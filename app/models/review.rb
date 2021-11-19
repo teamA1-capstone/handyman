@@ -50,4 +50,19 @@ class Review < ApplicationRecord
     def customer_email
         job.customer_email
     end
+
+    # def rating
+    #     @total = skill_rating + honesty_rating + focused_rating + reliability_rating
+
+    #     if @total/16 > .8
+    #         5
+    #     elsif @total/16 > .6
+    #         4
+    #     elsif @total/16 > .4
+    #         3
+    #     elsif @total/16 > .2
+    #         2
+    #     else
+    #         1
+    # end
 end

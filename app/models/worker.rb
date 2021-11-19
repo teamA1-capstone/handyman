@@ -37,5 +37,18 @@ class Worker < ApplicationRecord
     foreign_key: 'worker_id',
     inverse_of: :worker
   )
+
+  # def getReviews
+  #   @jobs = this.jobs
+  #   @jobs.each_with_index |j, i|
+  #     @reviews = @reviews + j.reviews
+  #   end
+
+  #   @reviews
+  # end
+
+  # def getRating
+  #   reviews.rating
+  # end
         
 end
