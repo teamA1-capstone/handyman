@@ -14,6 +14,14 @@ class ReviewsController < ApplicationController
         render :index
     end
 
+    def show
+        @index = params[:specialty_index].to_i
+
+        @review = Review.find(params[:review_id])
+
+        render :show
+    end
+
     def new
         @job = Job.find(params[:job_id])
         @review = Review.new
