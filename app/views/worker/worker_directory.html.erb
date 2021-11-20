@@ -22,16 +22,11 @@
 
     <li class="list-inline-item dropdown">
       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Example 1
+        Sort By
       </button>
       <div class="dropdown-menu">
-        <!-- loop way of displaying the menu -->
-        <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
-          <p>
-            <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
-          </p>
-        <% end %>
-        <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
+        <%= link_to "First Name", worker_directory_path(:sort => "first_name"), class: 'dropdown-item'%>
+        <%= link_to "Last Name", worker_directory_path(:sort => "last_name"), class: 'dropdown-item'%>
       </div>
     </li>
 

@@ -1,30 +1,48 @@
+<style>
+  img{
+    display: inline-block;
+    width: 10pt;
+    height: 10pt;
+    padding: 0px 1px;
+  }
+ .hidden{
+    display: none;
+  }
+
+  .rating{
+    display: block;
+  }
+</style>
+
+
 <h1 class="header-center">My Jobs</h1>
 
+<body>
+  <ul id="button-containter">
+    <button id="not-completed" type="button" class="btn btn-primary active">not started</button>
+    <button id="in-progress" type="button" class="btn btn-primary">in-progress</button>
+    <button id="completed" type="button" class="btn btn-primary">completed</button>
+  </ul>
 
-<div class="posts">
+<div id="posts not-completed">
   <% @jobs.each_with_index do |job, index| %>
 
-  <% if job.customer_id == current_customer.id%>
+  <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
   
     <div class="posting">
-      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a class="accordian-group" data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="true" aria-controls="collapseExample">
         <%= job.name %>
       </a>
 
       <div class="collapse" id="collapseExample<%= index %>">
         <div class="card card-body">
-          <h3><%= job.customer.first_name%></h3>
+          <h3>Posted By <%= job.customer.first_name%></h3>
           <p><%= job.specialty %></p>
           <p><%= job.description %></p>
-          <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
-            <li><%= job.customer.email%></li>
-              <p> <%= link_to 'edit', edit_path(job), class: 'btn btn-custom-color' %> </p>
-          </p>
         </div>
       </div>
     </div>
-<% end %>
-
+  <% end %>
 <% end %>
 
   <div style="margin-top:20px;">
@@ -34,5 +52,214 @@
       </p>
     <% end %>
   </div>
-  
 </div>
+
+<div id="posts in-progress" class="hidden">
+  <% @jobs.each_with_index do |job, index| %>
+
+  <% if job.customer_id == current_customer.id and job.in_progress == true%>
+  
+    <div class="posting">
+      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <%= job.name %>
+      </a>
+
+      <div class="collapse" id="collapseExample<%= index %>">
+        <div class="card card-body">
+          <h3>Posted By <%= job.customer.first_name%></h3>
+          <p><%= job.specialty %></p>
+          <p><%= job.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<div id="posts completed" class="hidden">
+  <% @jobs.each_with_index do |job, index| %>
+  
+  <% if job.customer_id == current_customer.id and job.completed == true%>
+    <% if job.reviews != nil%>
+      <% ratings = [job.reviews.reliability_rating, job.reviews.honesty_rating, job.reviews.skill_rating, job.reviews.focused_rating]%>
+      
+      <div class="posting">
+        <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="rating(<%= ratings[0]%>, <%= ratings[1]%>,<%= ratings[2]%>,<%= ratings[3]%>)">
+          <%= job.name %>
+        </a>
+    <% else %>
+        <div class="posting">
+          <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <%= job.name %>
+          </a>
+    <% end %>
+
+      <div class="collapse" id="collapseExample<%= index %>">
+        <div class="card card-body">
+          <h3>Posted By <%= job.customer.first_name%></h3>
+          <p><%= job.specialty %></p>
+          <p><%= job.description %></p>
+
+          <p>Completed By <%= job.worker.first_name %> <%= job.worker.last_name %></p>
+
+          <% if job.reviews == nil%>
+          <div data-turbolinks="false">
+            <p>
+              <%= link_to 'add a review', new_review_path(job), class: "btn btn-custom-color" %>
+            </p>
+          </div>
+          <% else %>
+            <div id="review">
+              
+              <h5 style="font-weight:bold;">Review of Worker Performance on the Job</h5>
+              <h6 style="font-weight:bold;"><%= job.reviews.headline%></h6>
+
+              <p><%= job.reviews.body %></p>
+
+              <div id="reliability">
+                Reliability:
+              <div>
+
+              <div class="rating">
+                <% i = 1 %>
+                <% while i < 6%>
+                  <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+                  <%i = i + 1%>
+                <% end %>
+              </div>
+
+              <br>
+
+              <div id="honesty">
+                Honesty:
+              </div>
+
+              <div class="rating">
+                <% while i < 11%>
+                  <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+                  <%i = i + 1%>
+                <% end %>
+              </div>
+
+              <br>
+
+              <div id="skill">
+                Skill:
+              </div>
+
+              <div class="rating">
+                <% while i < 16%>
+                  <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+                  <%i = i + 1%>
+                <% end %>
+              </div>
+
+              <br>
+
+              <div id="focus">
+                Focus:
+              </div>
+
+              <div class="rating">
+                <% while i < 21%>
+                  <img src="<%= asset_path 'star-blue-outline.svg' %>" id='<%= i%>' class='star'/>
+                  <%i = i + 1%>
+                <% end %>
+              </div>
+
+              <!-- there is a picture uploaded, just cant figure out how to display -->
+
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<script>
+  var btn1 = document.getElementById('completed');
+  var btn2 = document.getElementById('not-completed');
+  var btn3 = document.getElementById('in-progress');
+
+  btn1.addEventListener("click", onClick);
+  btn2.addEventListener("click", onClick);
+  btn3.addEventListener("click", onClick);
+
+  function onClick(event){
+    let className = event.target.className;
+    let id = event.target.id;
+
+    if(id == "completed"){
+      document.getElementById("posts not-completed").className = "hidden"
+      document.getElementById("posts in-progress").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("not-completed").className = "btn btn-primary"
+      document.getElementById("in-progress").className = "btn btn-primary"
+      document.getElementById("posts completed").className = ""
+    }
+    else if(id == "in-progress"){
+      document.getElementById("posts not-completed").className = "hidden"
+      document.getElementById("posts completed").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("not-completed").className = "btn btn-primary"
+      document.getElementById("completed").className = "btn btn-primary"
+      document.getElementById("posts in-progress").className = ""
+    }
+    else{
+      document.getElementById("posts in-progress").className = "hidden"
+      document.getElementById("posts completed").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("in-progress").className = "btn btn-primary"
+      document.getElementById("completed").className = "btn btn-primary"
+      document.getElementById("posts not-completed").className = ""
+    }
+  }
+
+  function stars(number){
+    let i = 0;
+    
+  }
+
+  function rating(reliability, honesty, skill, focused) {
+    reliabilityStars(reliability);
+    honestyStars(honesty);
+    skillStars(skill);
+    focusedStars(focused);
+  }
+
+  function reliabilityStars(rating){
+    while(rating > 0){
+      document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+      rating = rating - 1;
+    }
+  }
+
+  function honestyStars(rating){
+    rating = rating + 5;
+    while(rating > 5){
+        document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+        rating = rating - 1;
+    }
+  }
+
+  function skillStars(rating){
+    rating = rating + 10;
+    while(rating > 10){
+        document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+        rating = rating - 1;
+    }
+  }
+
+  function focusedStars(rating){
+    rating = rating + 15;
+    while(rating > 15){
+        document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
+        rating = rating - 1;
+    }   
+  }
+
+</script>
+
+</body>

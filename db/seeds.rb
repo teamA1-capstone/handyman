@@ -40,6 +40,19 @@ spock = Customer.create!(
     zip_code: '52327'
 )
 
+dummy = Worker.create!(
+    email: 'dummy@email.com',
+    password: 'agfhjr16354',
+    first_name: 'dummy',
+    last_name: 'dummy',
+    street_address: 'dummy',
+    city: 'dummy',
+    state: 'dummy',
+    zip_code: 'dummy',
+    specialty: 'dummy', 
+    invisibility: 1
+)
+
 builder_bob = Worker.create!(
     email: 'builder@email.com',
     password: 'password',
@@ -86,16 +99,28 @@ job1 = Job.create!(
     description: 'My toilet has not been flushing. It makes a weird noise and does not flush',
     customer: kirk,
     in_progress: false, 
-    completed: false
+    completed: true,
+    worker: builder_bob
 )
 
 job2 = Job.create!(   
+    name: 'Light', 
+    specialty: 'Electrician',
+    description: 'My light is shutting off randomly.',
+    customer: spock,
+    in_progress: false,
+    completed: true,
+    worker: doe_jane
+)
+
+job3 = Job.create!(   
     name: 'Light not working', 
     specialty: 'Electrician',
     description: 'My light fixture is flickering and shutting off randomly.',
     customer: spock,
     in_progress: false,
-    completed: false
+    completed: true,
+    worker: doe_jane
 )
 
 rev1 = Review.create!(
@@ -107,4 +132,28 @@ rev1 = Review.create!(
     focused_rating: 1,
     pictures: "",
     job: job2
+)
+
+rev2 = Review.create!(
+    headline: "Honest review",
+    body: "the worker was largely good",
+    skill_rating: 5,
+    honesty_rating: 4,
+    reliability_rating: 4,
+    focused_rating: 3,
+    pictures: "",
+    job: job3
+)
+
+Frank_Honest = Worker.create!(
+    email: 'honest@email.com',
+    password: 'password',
+    first_name: 'Honest',
+    last_name: 'Frank',
+    street_address: '123 Boardwalk Lane',
+    city: 'Mono',
+    state: 'Poly',
+    zip_code: '12345',
+    specialty: 'Other', 
+    invisibility: 0
 )
