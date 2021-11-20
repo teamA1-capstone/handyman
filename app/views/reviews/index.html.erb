@@ -1,7 +1,7 @@
 <h2 class="text-center"> <%= @worker.first_name %>'s Work Performance </h2>
 
 <p>
-    <%= link_to 'Back',worker_path(@index), class: 'btn btn-primary' %>
+    <%= link_to 'Back To Worker',worker_path(@index), class: 'btn btn-primary' %>
 </p><br>
 
     <% @job.each_with_index do |job, index| %>

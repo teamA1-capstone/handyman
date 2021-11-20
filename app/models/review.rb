@@ -50,4 +50,9 @@ class Review < ApplicationRecord
     def customer_email
         job.customer_email
     end
+
+    def average_rating
+        #out of 20 because there are four 5 star ratings summed up, with the highest score being 20
+        rating = (focused_rating + honesty_rating + skill_rating + reliability_rating).to_f/20
+    end
 end

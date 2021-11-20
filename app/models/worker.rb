@@ -37,5 +37,35 @@ class Worker < ApplicationRecord
     foreign_key: 'worker_id',
     inverse_of: :worker
   )
-        
+
+  def average_rating
+    result = 0.0
+    index = jobs.size()
+    
+    while index > 0
+      result = result + jobs[index-1].average_rating
+      index = index - 1
+    end
+    return result
+  end
+
+  def number_of_ratings
+    return jobs.size()
+  end
+  
+  def stars
+    if(average_rating > 0.8)
+      return "5 Stars"
+    elsif (average_rating > 0.6)
+      return "4 Stars"
+    elsif (average_rating > 0.4)
+      return "3 Stars"
+    elsif (average_rating > 0.2)
+      return "2 Stars"
+    elsif (average_rating > 0.0)
+      return "1 Star"
+    else
+      return "No Reviews"
+    end
+  end
 end
