@@ -35,4 +35,13 @@ class WorkerController < ApplicationController
         render :worker
     end
 
+    def search
+        if params[:search].blank?
+          redirect_to worker_directory_path(-1)
+        else
+          @parameter = params[:search].downcase
+          @results = Worker.all.where("lower(first_name) LIKE :search", search: "%#{@parameter}%")
+        end
+    end
+
 end

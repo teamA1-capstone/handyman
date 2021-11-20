@@ -93,6 +93,19 @@ doe_jane = Worker.create!(
     invisibility: 0
 )
 
+Frank_Honest = Worker.create!(
+    email: 'honest@email.com',
+    password: 'password',
+    first_name: 'Honest',
+    last_name: 'Frank',
+    street_address: '123 Boardwalk Lane',
+    city: 'Mono',
+    state: 'Poly',
+    zip_code: '12345',
+    specialty: 'Other', 
+    invisibility: 0
+)
+
 job1 = Job.create!(   
     name: 'Toilet Fix', 
     specialty: 'Plumber',
@@ -104,6 +117,16 @@ job1 = Job.create!(
 )
 
 job2 = Job.create!(   
+    name: 'Light', 
+    specialty: 'Electrician',
+    description: 'My light is shutting off randomly.',
+    customer: spock,
+    in_progress: false,
+    completed: true,
+    worker: doe_jane
+)
+
+job3 = Job.create!(   
     name: 'Light not working', 
     specialty: 'Electrician',
     description: 'My light fixture is flickering and shutting off randomly.',
@@ -125,8 +148,8 @@ rev1 = Review.create!(
 )
 
 rev2 = Review.create!(
-    headline: "This is a review",
-    body: "the worker was largely awful",
+    headline: "He was ok",
+    body: "the worker was ok",
     skill_rating: 4,
     honesty_rating: 4,
     reliability_rating: 4,
@@ -135,15 +158,13 @@ rev2 = Review.create!(
     job: job1
 ) 
 
-Frank_Honest = Worker.create!(
-    email: 'honest@email.com',
-    password: 'password',
-    first_name: 'Honest',
-    last_name: 'Frank',
-    street_address: '123 Boardwalk Lane',
-    city: 'Mono',
-    state: 'Poly',
-    zip_code: '12345',
-    specialty: 'Other', 
-    invisibility: 0
+rev3 = Review.create!(
+    headline: "Honest review",
+    body: "the worker was largely good",
+    skill_rating: 5,
+    honesty_rating: 4,
+    reliability_rating: 4,
+    focused_rating: 3,
+    pictures: "",
+    job: job3
 )

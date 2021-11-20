@@ -44,14 +44,23 @@
               </li>
               <% if customer_signed_in? %>
                 <li class="nav-item ml-auto">
-                  <%= link_to "Hi, #{current_customer.first_name}", edit_customer_registration_path, class: 'nav-link' %>
+                  <%= link_to "Hi, #{current_customer.first_name}", nil, class: 'nav-link' %>
                 </li>
                 <p>
-                <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
+                <li><%= link_to 'My Profile', customer_profile_path,  class: 'nav-link'%></li>
                 </p>
                 <li class="nav-item">
-                  <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
+                  <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' %>
+                <li class="nav-item ">
+                <%= form_tag(search_path, :method => "get") do %>
+                <div class="input-group">
+                  <%= search_field_tag :search, params[:search], placeholder: "Find a worker", class: "form-control" %>
+                  <div class="input-group-btn">
+                    <%= button_tag "Search", :class => 'btn btn-primary', :name => nil%>
+                  </div>
+                </div>
                 </li>
+                <% end %>
               <% else %>
                 <li class="nav-item">
                   <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
@@ -90,10 +99,13 @@
               </li>
             <% if worker_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Hi, #{current_worker.email}", edit_worker_registration_path, class: 'nav-link' %>
+                <%= link_to "Hi, #{current_worker.first_name}", worker_profile_path, class: 'nav-link' %>
               </li>
+              <p>
+                <li><%= link_to 'My Profile', worker_profile_path, class: 'nav-link'%></li>
+              </p>
               <li class="nav-item">
-                <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
+                <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' %>
               </li>
             <% else %>
               <li class="nav-item">
