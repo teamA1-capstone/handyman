@@ -1,3 +1,9 @@
+<style>
+#worker_invisibility{
+  display: none;
+}
+</style>
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -65,7 +71,24 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
-
+  
+  <br>
+  <p>Would you like to hide your name from the available worker list?
+    <%if current_worker.invisibility == 0 %>
+      <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitches">
+          <label class="custom-control-label" for="customSwitches">Name hidden</label>
+      </div>
+    <% else %>
+      <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitches" checked>
+          <label class="custom-control-label" for="customSwitches">Name hidden</label>
+      </div>
+    <% end %>
+  </p>
+<!-- This none diplaying number field is used to capture the change of the toggle control
+      and update the invisability attribute of the worker when form is submitted. -->
+  <%= f.number_field :invisibility %>
   <div class="actions"><br />
     <%= f.submit "Update" %>
   </div>
@@ -76,3 +99,18 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<script>
+document.getElementById('customSwitches').addEventListener('click', updateWorkerVisability )
+
+function updateWorkerVisability(event) {
+
+  var isChecked = this.checked;
+  console.log(isChecked);
+  var status = 0;
+  if (isChecked){
+    status = 1
+  }
+  document.getElementById('worker_invisibility').value = status;
+}
+</script>
