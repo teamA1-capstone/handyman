@@ -28,4 +28,12 @@ class ApplicationController < ActionController::Base
       worker_home_path
     end
   end
+
+  def worker_root_path
+    worker_home_path
+  end
+
+  def customer_root_path
+    home_path
+  end
 end
