@@ -104,6 +104,16 @@ job1 = Job.create!(
 )
 
 job2 = Job.create!(   
+    name: 'Light', 
+    specialty: 'Electrician',
+    description: 'My light is shutting off randomly.',
+    customer: spock,
+    in_progress: false,
+    completed: true,
+    worker: doe_jane
+)
+
+job3 = Job.create!(   
     name: 'Light not working', 
     specialty: 'Electrician',
     description: 'My light fixture is flickering and shutting off randomly.',
@@ -122,6 +132,17 @@ rev1 = Review.create!(
     focused_rating: 1,
     pictures: "",
     job: job2
+)
+
+rev2 = Review.create!(
+    headline: "Honest review",
+    body: "the worker was largely good",
+    skill_rating: 5,
+    honesty_rating: 4,
+    reliability_rating: 4,
+    focused_rating: 3,
+    pictures: "",
+    job: job3
 )
 
 Frank_Honest = Worker.create!(

@@ -100,7 +100,7 @@
           <p><%= job.specialty %></p>
           <p><%= job.description %></p>
 
-          <p>Completed By Unavailable</p>
+          <p>Completed By <%= job.worker.first_name %> <%= job.worker.last_name %></p>
 
           <% if job.reviews == nil%>
           <div data-turbolinks="false">

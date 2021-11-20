@@ -39,7 +39,7 @@
 <body>
 
 <%= bootstrap_form_with model: @review, method: :post, url: create_review_path, local: true do |review| %>
-    <p>based on your experience, rate the worker in the following categories: </p>
+    <p>Based on your experience, rate the worker in the following categories: </p>
 
     <div class="field">
         <%= review.number_field :skill_rating, label: "Worker Skill Level"%>
