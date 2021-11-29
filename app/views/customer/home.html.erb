@@ -60,14 +60,14 @@
   <% if customer_signed_in?%>
     <p class="container h4 p-2">Hi, <%= current_customer.first_name %></p>
   <% end %>
-  
+
   <div class="btn-group-vertical btn-group-lg">
     <% if customer_signed_in? %>
-      <%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%>   
-      <%= link_to 'Job Board', jobs_path, class: 'btn btn-primary'%>   
-      <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'btn btn-primary' %>
+      <%= link_to 'My Profile', customer_profile_path, class: 'btn btn-custom-color'%>   
+      <%= link_to 'Job Board', jobs_path, class: 'btn btn-custom-color'%>   
+      <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'btn btn-custom-color' %>
     <% else %>
-        <%= link_to 'Job Board', jobs_path, class: 'btn btn-custom-color btn-lg'%>
+        <%= link_to 'Job Board', jobs_path, class: 'btn btn-custom-color'%>
     <% end %>
   </div>
 
