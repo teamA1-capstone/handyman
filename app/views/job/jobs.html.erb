@@ -1,5 +1,5 @@
 <h1 class="header-center">Job Board</h1>
-<div class="posting">
+<div class="container-fluid">
   <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     Filter
   </a>
@@ -19,46 +19,46 @@
       </div>
     </li>
   </div>
-  
-<th></th>
+</div>
+
+<div style="margin-top:20px;">
+  <% if customer_signed_in? && $SWITCH == 1%>
+    <p>
+      <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
+    </p>
+  <% end %>
+</div>
+
+
 <div class="posts">
-  <% @jobs.each_with_index do |job, index| %>
-    <div class="posting">
-      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <%= job.name %>
-      </a>
-
-      <div class="collapse" id="collapseExample<%= index %>">
-        <div class="card card-body">
-          <h3><%= job.customer.first_name%></h3>
-          <p><%= job.specialty %></p>
-          <p><%= job.description %></p>
-          <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
-            <li><%= job.customer.email%></li>
-          </p>
-          <%# The Delete button allows users to remove a posted job from the job board.
-           This happens because delete_job_path takes the job id and calles the destroy 
-           function in the job_controller.
-           %>
-           <%# The button will show only when a customer is signed in and they have a job posted.%>
-          <% if customer_signed_in?%>
-            <% if job.customer_id == current_customer.id%>
-              <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-<% end %>
-
-  <div style="margin-top:20px;">
-    <% if customer_signed_in? && $SWITCH == 1%>
+  <% if @jobs.size() == 0 %>
+    <div class="container-fluid p-3 my-3 bg-light text-black">
       <p>
-        <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
+        There are no job posts at this time. Come back later.
       </p>
+    </div>
+  <% else %>
+    <% @jobs.each do |job| %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <% @job = job %>
+        <%= render :partial => 'job', locals: { job: @job } %>
+        
+        <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
+          <li><%= job.customer.email%></li>
+        </p>
+        <%# The Delete button allows users to remove a posted job from the job board.
+        This happens because delete_job_path takes the job id and calles the destroy 
+        function in the job_controller.
+        %>
+        <%# The button will show only when a customer is signed in and they have a job posted.%>
+        <% if customer_signed_in?%>
+          <% if job.customer_id == current_customer.id%>
+            <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
   
 </div>
 

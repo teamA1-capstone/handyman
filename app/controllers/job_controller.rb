@@ -1,7 +1,7 @@
 class JobController < ApplicationController
 
   def jobs
-    @jobs = Job.all
+    @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
     render :jobs
   end
 
@@ -14,9 +14,9 @@ class JobController < ApplicationController
 
     # -1 is the value passed when clicking the link to view all workers
     if @index != -1
-      @jobs = Job.where({specialty: $SPECIALTY_TYPES.at(@index)})
+      @jobs = Job.where("specialty = ? AND completed = ? AND in_progress = ?", $SPECIALTY_TYPES.at(@index), false, false)
     else
-      @jobs = Job.all
+      @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
     end
     
     render :jobs
@@ -43,23 +43,6 @@ class JobController < ApplicationController
       render :new
     end
     $SPECIALTY_TYPES.delete_at(0)
-  end
-
-  def index
-    # $SPECIALTY_TYPES is a global array populated with every specialty type available.
-    # can be found in app/controllers/application_controller.rb
-    
-    # this is grabbing the extra data passed in the url and converting it to a integer
-    @index = params[:specialty_index].to_i
-
-    # -1 is the value passed when clicking the link to view all jobs
-    if @index != -1
-      @jobs = Job.where({specialty: $SPECIALTY_TYPES.at(@index)})
-    else
-      @jobs = Job.all
-    end
-    
-    render :jobs
   end
 
   def delete

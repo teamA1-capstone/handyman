@@ -1,0 +1,44 @@
+<div id="review">
+              
+  <h5 style="font-weight:bold;">Review of Worker Performance on the Job</h5>
+  <h6 style="font-weight:bold;"><%= @review.headline%></h6>
+
+  <p><%= @review.body %></p>
+
+  <p> Reliability: </p>
+
+  <div id="reliability">
+    <% @rating = @review.reliability_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+  </div>
+
+  <br>
+
+  <p> Honesty: </p>
+  
+  <div id="honesty">
+    <% @rating = @review.honesty_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+  </div>
+
+  <br>
+
+  <p> Skill: </p>
+
+  <div id="skill" >
+    <% @rating = @review.skill_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+  </div>
+
+  <br>
+
+  <p> Focus: </p>
+
+  <div class="focus">
+    <% @rating = @review.focused_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+  </div>
+
+  <!-- there is a picture uploaded, just cant figure out how to display -->
+
+</div>
