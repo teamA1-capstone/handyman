@@ -41,6 +41,7 @@ class Worker < ApplicationRecord
   has_many(
     :reviews, 
     through: :jobs
+  )
   
   has_many(
     :messages,
