@@ -1,0 +1,5 @@
+<% if customer_signed_in? %>
+    <p class="container h4 p-2">Hi, <%= current_customer.first_name %></p>
+<% elsif worker_signed_in? %>
+    <p class="container h4 p-2">Hi, <%= current_worker.first_name %></p>
+<% end %>
