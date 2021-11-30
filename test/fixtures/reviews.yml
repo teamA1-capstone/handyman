@@ -31,6 +31,7 @@ one:
   reliability_rating: 1
   focused_rating: 1.5
   pictures: {MyString}
+  customer: one
 
 two:
   headline: MyString
@@ -40,3 +41,4 @@ two:
   reliability_rating: 1
   focused_rating: 1.45
   pictures: {MyString}
+  customer: one

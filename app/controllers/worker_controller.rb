@@ -17,10 +17,14 @@ class WorkerController < ApplicationController
       @index = params[:specialty_index].to_i
 
       # -1 is the value passed when clicking the link to view all workers
-      if @index != -1
+      if params[:sort] == "first_name"
+        @workers_to_display = Worker.where({invisibility: 0}).order(params[:sort]) 
+      elsif params[:sort] == "last_name"
+        @workers_to_display = Worker.where({invisibility: 0}).order(params[:sort])
+      elsif @index != -1
         @workers_to_display = Worker.where({specialty: $SPECIALTY_TYPES.at(@index)})
       else
-        @workers_to_display = Worker.all
+        @workers_to_display = Worker.where({invisibility: 0})
       end
       
       render :worker_directory
@@ -29,6 +33,19 @@ class WorkerController < ApplicationController
     def show
         @worker = Worker.find(params[:id])
         render :worker
+    end
+
+    def search
+        if params[:search].blank?
+          redirect_to worker_directory_path(-1)
+        else
+          # @results returns searches done for first name or last name or the specialty
+          # of the worker
+          @parameter = params[:search].downcase
+          @results = Worker.all.where("lower(first_name) LIKE :search", search: "%#{@parameter}%")
+          @results += Worker.all.where("lower(last_name) LIKE :search", search: "%#{@parameter}%")
+          @results += Worker.all.where("lower(specialty) LIKE :search", search: "%#{@parameter}%")
+        end
     end
 
 end

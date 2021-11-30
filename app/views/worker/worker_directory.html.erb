@@ -1,81 +1,92 @@
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
+
 <h1 class="text-center">Available Workers</h1>
 
-<div class="posting">
-  <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Filter
-  </a>
-  <div class="collapse" id="collapseExample">
-    <li class="list-inline-item dropdown">
-      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Type
-      </button>
-      <div class="dropdown-menu">
-        <!-- loop way of displaying the menu -->
-        <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
-          <p>
-            <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
-          </p>
-        <% end %>
-        <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
-      </div>
-    </li>
+<div class = "container p-3 my-3 bg-light text-black">
+  <div class="filter">
+    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Filter
+    </a>
 
-    <li class="list-inline-item dropdown">
-      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Example 1
-      </button>
-      <div class="dropdown-menu">
-        <!-- loop way of displaying the menu -->
-        <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
-          <p>
-            <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
-          </p>
-        <% end %>
-        <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
-      </div>
-    </li>
+    <div class="collapse" id="collapseExample">
+      <li class="list-inline-item dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="this.blur();">
+          Type
+        </button>
 
-    <li class="list-inline-item dropdown">
-      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Example 2
-      </button>
-      <div class="dropdown-menu">
-        <!-- loop way of displaying the menu -->
-        <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
-          <p>
-            <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
-          </p>
-        <% end %>
-        <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
-      </div>
-    </li>
+        <div class="dropdown-menu">
+          <!-- loop way of displaying the menu -->
+          <% $SPECIALTY_TYPES.each_with_index do |type, index|%>
+            <p>
+              <%= link_to $SPECIALTY_TYPES.at(index).to_s, worker_directory_path(index), class: 'dropdown-item'%>
+            </p>
+          <% end %>
+          <%= link_to "See All", worker_directory_path(-1), class: 'dropdown-item'%>
+        </div>
+      </li>
+    
+      <li class="list-inline-item dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort By
+        </button>
+        <div class="dropdown-menu">
+          <%= link_to "First Name", worker_directory_path(:sort => "first_name"), class: 'dropdown-item'%>
+          <%= link_to "Last Name", worker_directory_path(:sort => "last_name"), class: 'dropdown-item'%>
+        </div>
+      </li>
+    </div>
   </div>
 
-<p></p>
+  <table class="table table-hover">
 
-<table class="table table-hover">
-
-  <thead class="thead-dark">
-    <tr>
-        <th>Name</th>
-        <th>Specialty</th>
-        <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @workers_to_display.each do |w| %>
-      
-      <tr>
-        <td><%= w.first_name %> <%= w.last_name %></td>
-        <td><%= w.specialty %></td>
-        <td><%= link_to 'More Info', worker_path(@index, w) %></td>
+    <thead>
+      <tr style="background-color:#7DAFE8;color:#ffffff;">
+          <th>Name</th>
+          <th>Specialty</th>
+          <th>Rating</th>
+          <th>Details</th>
+          <th></th>
       </tr>
-       
-    <% end %>
-  </tbody>
+    </thead>
 
-</table>
+    <%# tbody is used to display the worker information in a table body%>
+    <%# if there are no workers to display, render a partial with the table data for no workers%>
+    <tbody>
+      <% if @workers_to_display.size() == 0%>
+        <%= render :partial => 'no_workers_table_data'%>
+      <% else %>
+        <% @workers_to_display.each do |w| %>
+          <tr>
+            <td><%= w.first_name %> <%= w.last_name %></td>
+            <td><%= w.specialty%></td>
+            <td>
+
+              <%# this link takes the user to the worker reviews page%>
+              <%= link_to worker_reviews_path(@index, w) do %>
+                <div style="inline-block;">
+
+                  <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
+                  <%# and then @star is passed along to the partial "reviews/stars" %>
+                  <% @rating = w.rating %>
+                  <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+                  <span>(<%= w.number_of_reviews%>)</span>
+                
+                </div>
+              
+              <% end %>
+            </td>
+            <td><%= link_to 'More Info', worker_path(@index, w) %></td>
+          </tr>
+        <% end %> 
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
 
 <p>
   <%= link_to 'Home', home_path, class: 'btn btn-primary'%>

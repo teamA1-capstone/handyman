@@ -1,32 +1,68 @@
-<h1>Worker home page</h1>
+<style>
+  body{
+    background-image: url(<%= asset_path 'colorful-tools.jpeg' %>);
+  }
 
-<p>
-<ul class="navbar-nav">
-      <% if worker_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Hi, #{current_worker.first_name}", edit_worker_registration_path, class: 'nav-link' %>
-        </li>
-        <p>
-        <li><%= link_to 'My Profile', worker_profile_path, class: 'btn btn-primary'%></li>
-        </p>
-        <li class="nav-item">
-          <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign In', new_worker_session_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign Up', new_worker_registration_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
-</p>
+  #page-container{
+    padding: 10%;
+  }
+ 
+  /* <%# Extra small devices (phones, 600px and down) %>
+  @media only screen and (max-width: 600px) {
+    body{
+      background-repeat: repeat;
+      background-size: 400%;
+    }
+  }
 
-<p>
-  <%= link_to 'Customer Home', home_path, class: 'btn btn-primary'%>
-</p>
+  <%# Small devices (portrait tablets and large phones, 600px and up)%>
+  @media only screen and (min-width: 600px) {
+    body{
+      background-repeat: repeat;
+      background-size: 300%;
+    }
+  }
 
-<p>
-  <%= link_to 'Job Board', jobs_path, class: 'btn btn-primary'%>
-</p>
+  <%#Medium devices (landscape tablets, 768px and up) %>
+  @media only screen and (min-width: 768px) {
+    body{
+      background-repeat: repeat;
+      background-size: 200%;
+    }
+  }
+
+  <%#Large devices (laptops/desktops, 992px and up) %>  
+  @media only screen and (min-width: 992px) {
+    body{
+      background-repeat: repeat;
+      background-size: 150%;
+    }
+  }
+
+  /* <%# Extra large devices (large laptops and desktops, 1200px and up)%>
+  @media only screen and (min-width: 1200px) {
+    body{
+      background-repeat: repeat;
+      background-size: 100%;
+    }
+
+  } */
+</style>
+
+<div class="container-fluid text-light text-center" id="page-container" style="background: rgba(0, 0,0, 0.5);">
+  <h1 class="display-1"><strong>HOME</strong></h1>
+
+  <% if worker_signed_in?%>
+    <p class="container h4 p-2">Hi, <%= current_worker.first_name %></p>
+  <% end %>
+
+  <div class="btn-group-vertical btn-group-lg">
+    <% if worker_signed_in? %>
+      <%= link_to 'My Profile', worker_profile_path, class: 'btn btn-dark-red'%>
+      <%= link_to 'Job Board', jobs_path, class: 'btn btn-dark-red'%>
+      <%= link_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'btn btn-dark-red' %>
+    <% else %>
+      <%= link_to 'Job Board', jobs_path, class: 'btn btn-dark-red'%>
+    <% end %>
+  </div>
+</div>

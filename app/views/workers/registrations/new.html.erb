@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label :specialty %><br />
-    <%= f.text_field :specialty, autofocus: true %>
+    <%= f.select :specialty, $SPECIALTY_TYPES, autofocus: true %>
   </div>
 
   <div class="field">

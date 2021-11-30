@@ -1,58 +1,63 @@
+<style>
+.table{
+    width: 50%;
+    margin: auto;
+    font-family: Georgia, Garamond
+}
+</style>
+
 <h1 class="text-center"><%= current_customer.first_name %>'s Profile</h1>
 
-<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
-    <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Email Address</th>
-    </tr>
-  </thead>
+<div class = "container p-3 my-3 bg-light text-black">
+    
+    <div class="btn-group-vertical btn-group-sm" style="margin-left:82%;width:10%;">
+        <%= link_to 'My Jobs',my_jobs_path(), class: 'btn btn-primary' %>
+        <%= link_to 'Edit Profile',edit_customer_registration_path(current_customer), class: 'btn btn-primary' %>
+  </div>
 
-    <tbody>
-        <tr>
-        <td><%= current_customer.first_name %> <%= current_customer.last_name %></td>
-        <td><%= current_customer.email %></td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
-    <thead class="thead-dark">
-        <tr>
-        <th>Street Address</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-        <td><%= current_customer.street_address %></td>
-        </tr>
-        <thead class="thead-dark">
-            <tr>
-            <th>City/State</th>
+    <table class="table text-center">
+        <thead>
+            <tr style="background-color:#7DAFE8;color:#ffffff;">
+                <th>Name</th>
+                <th>Email Address</th>
             </tr>
         </thead>
-        <tr>
-        <td><%= current_customer.city %>, <%= current_customer.state %></td>
-        </tr>
-        <thead class="thead-dark">
+
+        <tbody>
             <tr>
-            <th>Zip Code</th>
+                <td><%= current_customer.first_name %> <%= current_customer.last_name %></td>
+                <td><%= current_customer.email %></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center">
+        <thead>
+            <tr style="background-color:#7DAFE8;color:#ffffff;">
+                <th>Street Address</th>
             </tr>
         </thead>
-        <tr>
-        <td><%= current_customer.zip_code %></td>
-        </tr>
-    </tbody>
-</table>
 
-<p>
-    <%= link_to 'My Jobs',my_jobs_path(current_customer), class: 'btn btn-primary' %>
-</p>
-
-<p>
-    <%= link_to 'Edit Profile',edit_customer_registration_path(current_customer), class: 'btn btn-primary' %>
-</p>
-<p>
-    <%= link_to 'Home',home_path, class: 'btn btn-primary' %>
-</p>
+        <tbody>
+            <tr>
+                <td><%= current_customer.street_address %></td>
+            </tr>
+            <thead>
+                <tr style="background-color:#7DAFE8;color:#ffffff;">
+                <th>City/State</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><%= current_customer.city %>, <%= current_customer.state %></td>
+            </tr>
+            <thead>
+                <tr style="background-color:#7DAFE8;color:#ffffff;">
+                <th>Zip Code</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><%= current_customer.zip_code %></td>
+            </tr>
+        </tbody>
+    </table><br>
+</div>

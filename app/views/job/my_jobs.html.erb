@@ -1,38 +1,173 @@
+<style>
+  img{
+    display: inline-block;
+    width: 10pt;
+    height: 10pt;
+    padding: 0px 1px;
+  }
+ .hidden{
+    display: none;
+  }
+
+  .rating{
+    display: block;
+  }
+
+</style>
+
+
 <h1 class="header-center">My Jobs</h1>
 
+<body>
+  <div class="btn-group container-fluid p-3 my-3 text-black">
+    <button id="not-completed" type="button" class="btn btn-primary active">not started</button>
+    <button id="in-progress" type="button" class="btn btn-primary">in-progress</button>
+    <button id="completed" type="button" class="btn btn-primary">completed</button>
+  </div>
 
-<div class="posts">
-  <% @jobs.each_with_index do |job, index| %>
-
-  <% if job.customer_id == current_customer.id%>
-  
-    <div class="posting">
-      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <%= job.name %>
-      </a>
-
-      <div class="collapse" id="collapseExample<%= index %>">
-        <div class="card card-body">
-          <h3><%= job.customer.first_name%></h3>
-          <p><%= job.specialty %></p>
-          <p><%= job.description %></p>
-          <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
-            <li><%= job.customer.email%></li>
-              <p> <%= link_to 'edit', edit_path(job), class: 'btn btn-custom-color' %> </p>
-          </p>
-        </div>
-      </div>
-    </div>
-<% end %>
-
-<% end %>
-
-  <div style="margin-top:20px;">
-    <% if customer_signed_in? && $SWITCH == 1%>
+  <div id="posts not-completed"> 
+    
+    <div style="margin-top:20px;">
       <p>
         <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
       </p>
+    </div>
+    
+    <% if @not_selected_jobs.size() == 0 %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <%= render :partial => 'no_jobs_message'%>
+      </div>
+    <% else %>
+      <% @not_selected_jobs.each do |job| %>
+      
+        <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
+          <div class="container-fluid p-3 my-3 bg-light text-black">
+
+            <% @job = job %>
+            <%= render :partial => 'job', locals: { job: @job } %>
+
+            <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
+
+          </div>
+        
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <div id="posts in-progress" class="hidden">
+
+    <% if @in_progress_jobs.size() == 0 %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <%= render :partial => 'no_jobs_in_progress_message'%>
+      </div>
+    <% else %>
+      <% @in_progress_jobs.each do |job| %>
+        <% if job.customer_id == current_customer.id and job.in_progress == true%>
+          <div class="container-fluid p-3 my-3 bg-light text-black">
+
+            <% @job = job %>
+            <%= render :partial => 'job', locals: { job: @job } %>
+          
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
-  
-</div>
+
+  <div id="posts completed" class="hidden">
+    <% if @completed_jobs.size() == 0 %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <%= render :partial => 'no_jobs_completed_message'%>
+      </div>
+    <% else %>
+      <% @completed_jobs.each_with_index do |job, index| %>
+
+        <% @review = job.reviews%>
+
+        <% if job.customer_id == current_customer.id and job.completed == true%>
+          <% if job.reviews != nil%>
+            <% ratings = [job.reviews.reliability_rating, job.reviews.honesty_rating, job.reviews.skill_rating, job.reviews.focused_rating]%>
+          <% end %>
+          
+          <div class="container-fluid p-3 my-3 bg-light text-black">
+
+            <% @job = job %>
+            <%= render :partial => 'job', locals: { job: @job } %>
+
+            <p>Completed By <%= link_to job.worker_name, worker_path(1, job.worker_id) %></p>
+
+            <% if job.reviews == nil%>
+              <div class="btn-group container-fluid p-3 my-3 text-black w-25">
+                <%= link_to 'add a review', new_review_path(job), class: "btn btn-custom-color" %>
+              </div>
+            <% else %>
+              
+              <div class="card border-dark">
+                <div class="card-header" id="heading<%=index.to_s%>">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%=index.to_s%>" aria-expanded="false" aria-controls="collapseOne" onclick="this.blur();">
+                      <% @rating =@review.rating %>
+                      Average rating for <%= job.worker_name%>
+                      <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse<%=index.to_s%>" class="collapse bg-light" aria-labelledby="heading<%=index.to_s%>">
+                  <div class="card-body">
+                    <%= render :partial => 'reviews/review', locals: { review: @review } %>
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+<script>
+  var btn1 = document.getElementById('completed');
+  var btn2 = document.getElementById('not-completed');
+  var btn3 = document.getElementById('in-progress');
+
+  btn1.addEventListener("click", onClick);
+  btn2.addEventListener("click", onClick);
+  btn3.addEventListener("click", onClick);
+
+  function onClick(event){
+    let className = event.target.className;
+    let id = event.target.id;
+
+    if(id == "completed"){
+      document.getElementById("posts not-completed").className = "hidden"
+      document.getElementById("posts in-progress").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("not-completed").className = "btn btn-primary"
+      document.getElementById("in-progress").className = "btn btn-primary"
+      document.getElementById("posts completed").className = ""
+    }
+    else if(id == "in-progress"){
+      document.getElementById("posts not-completed").className = "hidden"
+      document.getElementById("posts completed").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("not-completed").className = "btn btn-primary"
+      document.getElementById("completed").className = "btn btn-primary"
+      document.getElementById("posts in-progress").className = ""
+    }
+    else{
+      document.getElementById("posts in-progress").className = "hidden"
+      document.getElementById("posts completed").className = "hidden"
+      event.target.className = "btn btn-primary active"
+      document.getElementById("in-progress").className = "btn btn-primary"
+      document.getElementById("completed").className = "btn btn-primary"
+      document.getElementById("posts not-completed").className = ""
+    }
+  }
+
+</script>
+
+</body>

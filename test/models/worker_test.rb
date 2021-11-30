@@ -24,10 +24,17 @@
 #  index_workers_on_email                 (email) UNIQUE
 #  index_workers_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require "test_helper"
+class Worker < ApplicationRecord 
+  validate :invisibility_must_be_zero_or_one
 
-class WorkerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  
+  def invisibility_must_be_zero_or_one
+    if invisibility > 1 or invisibility < 0
+      error.add(:invisibility, "Value must be zero or one for the toggle switch.")
+    end  
+  end  
 end

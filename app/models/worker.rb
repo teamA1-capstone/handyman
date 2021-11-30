@@ -39,4 +39,51 @@ class Worker < ApplicationRecord
     dependent: :destroy
   )
 
+  has_many(
+    :reviews, 
+    through: :jobs
+  )
+  
+  has_many(
+    :messages,
+    as: :sender
+  )
+
+  has_many(
+    :messages,
+    as: :receiver
+  )
+
+  def name
+    first_name + " " + last_name
+  end
+
+  def average_rating
+    result = 0.0
+
+    reviews.each do |review|
+      result = result + review.average_rating
+    end
+    return result/number_of_reviews
+  end
+
+  def number_of_reviews
+    reviews.size()
+  end
+  
+  def rating
+    if(average_rating > 0.8)
+      return 5
+    elsif (average_rating > 0.6)
+      return 4
+    elsif (average_rating > 0.4)
+      return 3
+    elsif (average_rating > 0.2)
+      return 2
+    elsif (average_rating > 0.0)
+      return 1
+    else
+      return 0
+    end
+  end
 end

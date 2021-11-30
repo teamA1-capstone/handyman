@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   patch '/customer/customer_profile/my_jobs/:customer_id', to: 'job#update', as: 'update_job'
   put '/customer/customer_profile/my_jobs/:customer_id', to: 'job#update'
 
+  post '/customer/customer_profile/my_jobs/:job_id', to: 'reviews#create', as: 'create_review'
+  get '/customer/customer_profile/my_jobs/:job_id/new_review', to: 'reviews#new', as: 'new_review'
+
   get '/home/jobs', to: 'job#jobs', as: 'jobs'
   
   post '/home/jobs', to: 'job#create'
@@ -35,5 +38,11 @@ Rails.application.routes.draw do
   
   get 'home/worker_directory/:specialty_index', to: 'worker#index', as: 'worker_directory'
   get 'home/worker_directory/:specialty_index/:id', to: 'worker#show', as: 'worker'
+
+  get '/search', to: 'worker#search'
+  get '/job_search', to: 'job#job_search'
+
+  get 'home/worker_directory/:specialty_index/:id/worker_reviews', to: 'reviews#index', as: 'worker_reviews'
+  get 'home/worker_directory/:specialty_index/:id/worker_reviews/:review_id', to: 'reviews#show', as: 'review'
 
 end

@@ -32,7 +32,6 @@ class Review < ApplicationRecord
     #only allows integer values to be assigned to these rating attributes
     validates :focused_rating, :skill_rating, :honesty_rating, :reliability_rating, numericality: { only_integer: true }
 
-
     belongs_to(
         :job,
         class_name: 'Job',
@@ -50,5 +49,26 @@ class Review < ApplicationRecord
 
     def customer_email
         job.customer_email
+    end
+
+    def average_rating
+        #out of 20 because there are four 5 star ratings summed up, with the highest score being 20
+        rating = (focused_rating + honesty_rating + skill_rating + reliability_rating).to_f/20
+    end
+
+    def rating
+      if(average_rating > 0.8)
+        return 5
+      elsif (average_rating > 0.6)
+        return 4
+      elsif (average_rating > 0.4)
+        return 3
+      elsif (average_rating > 0.2)
+        return 2
+      elsif (average_rating > 0.0)
+        return 1
+      else
+        return 0
+      end
     end
 end

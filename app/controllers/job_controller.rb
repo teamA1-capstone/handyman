@@ -1,7 +1,7 @@
 class JobController < ApplicationController
 
   def jobs
-    @jobs = Job.all
+    @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
     render :jobs
   end
 
@@ -14,9 +14,9 @@ class JobController < ApplicationController
 
     # -1 is the value passed when clicking the link to view all workers
     if @index != -1
-      @jobs = Job.where({specialty: $SPECIALTY_TYPES.at(@index)})
+      @jobs = Job.where("specialty = ? AND completed = ? AND in_progress = ?", $SPECIALTY_TYPES.at(@index), false, false)
     else
-      @jobs = Job.all
+      @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
     end
     
     render :jobs
@@ -32,6 +32,9 @@ class JobController < ApplicationController
   def create
     @customer = Customer.find(current_customer.id)
     @job = @customer.jobs.build(params.require(:job).permit(:name, :description, :specialty))
+    @job.completed = false
+    @job.in_progress = false
+    @job.worker = Worker.find(1)
     if @job.save
       flash[:success] = "New Job Posting added!"
       redirect_to jobs_url
@@ -40,23 +43,6 @@ class JobController < ApplicationController
       render :new
     end
     $SPECIALTY_TYPES.delete_at(0)
-  end
-
-  def index
-    # $SPECIALTY_TYPES is a global array populated with every specialty type available.
-    # can be found in app/controllers/application_controller.rb
-    
-    # this is grabbing the extra data passed in the url and converting it to a integer
-    @index = params[:specialty_index].to_i
-
-    # -1 is the value passed when clicking the link to view all jobs
-    if @index != -1
-      @jobs = Job.where({specialty: $SPECIALTY_TYPES.at(@index)})
-    else
-      @jobs = Job.all
-    end
-    
-    render :jobs
   end
 
   def delete
@@ -69,7 +55,9 @@ class JobController < ApplicationController
 
 
   def my_jobs
-    @jobs = current_customer.jobs
+    @not_selected_jobs = current_customer.jobs.where("worker_id = ?", 1)
+    @in_progress_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?",false, true)
+    @completed_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?", true, false)
     render :my_jobs
   end
 
@@ -89,4 +77,15 @@ class JobController < ApplicationController
 
     end
   end
+
+
+  def job_search
+    if params[:job_search].blank?
+      redirect_to jobs_path(-1)
+    else
+      @parameter = params[:job_search].downcase
+      @jobs = Job.all.where("lower(specialty) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+  
 end
