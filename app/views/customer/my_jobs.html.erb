@@ -56,8 +56,8 @@
   /* Extra large devices (large laptops and desktops, 1200px and up) */
   @media only screen and (min-width: 1200px) {
     body{
-      background-repeat: repeat;
-      background-size: 100%;
+      background-repeat: no-repeat;
+      background-size: 150%;
     }
   }
 
@@ -65,8 +65,9 @@
 </style>
 
 <body>
-<h1 class="header-center">Hi, <%= current_customer.first_name%> </h1>
-<p class="container p-2 text-center h3">Here are your job listings</p>
+<div class="container-fluid p-5" style="background: rgba(0, 0, 0, 0.5);">
+  <h1 class="header-center text-light">Hi, <%= current_customer.first_name%> </h1>
+  <p class="container p-2 text-center text-light h3">Here are your job listings</p>
 
   <div class="btn-group container-fluid p-3 my-3 text-black">
     <button id="not-completed" type="button" class="btn btn-light-blue active">not started</button>
@@ -174,45 +175,45 @@
     <% end %>
   </div>
 
-<script>
-  var btn1 = document.getElementById('completed');
-  var btn2 = document.getElementById('not-completed');
-  var btn3 = document.getElementById('in-progress');
+  <script>
+    var btn1 = document.getElementById('completed');
+    var btn2 = document.getElementById('not-completed');
+    var btn3 = document.getElementById('in-progress');
 
-  btn1.addEventListener("click", onClick);
-  btn2.addEventListener("click", onClick);
-  btn3.addEventListener("click", onClick);
+    btn1.addEventListener("click", onClick);
+    btn2.addEventListener("click", onClick);
+    btn3.addEventListener("click", onClick);
 
-  function onClick(event){
-    let className = event.target.className;
-    let id = event.target.id;
+    function onClick(event){
+      let className = event.target.className;
+      let id = event.target.id;
 
-    if(id == "completed"){
-      document.getElementById("posts not-completed").className = "hidden"
-      document.getElementById("posts in-progress").className = "hidden"
-      event.target.className = "btn btn-light-blue active"
-      document.getElementById("not-completed").className = "btn btn-light-blue"
-      document.getElementById("in-progress").className = "btn btn-light-blue"
-      document.getElementById("posts completed").className = ""
+      if(id == "completed"){
+        document.getElementById("posts not-completed").className = "hidden"
+        document.getElementById("posts in-progress").className = "hidden"
+        event.target.className = "btn btn-light-blue active"
+        document.getElementById("not-completed").className = "btn btn-light-blue"
+        document.getElementById("in-progress").className = "btn btn-light-blue"
+        document.getElementById("posts completed").className = ""
+      }
+      else if(id == "in-progress"){
+        document.getElementById("posts not-completed").className = "hidden"
+        document.getElementById("posts completed").className = "hidden"
+        event.target.className = "btn btn-light-blue active"
+        document.getElementById("not-completed").className = "btn btn-light-blue"
+        document.getElementById("completed").className = "btn btn-light-blue"
+        document.getElementById("posts in-progress").className = ""
+      }
+      else{
+        document.getElementById("posts in-progress").className = "hidden"
+        document.getElementById("posts completed").className = "hidden"
+        event.target.className = "btn btn-light-blue active"
+        document.getElementById("in-progress").className = "btn btn-light-blue"
+        document.getElementById("completed").className = "btn btn-light-blue"
+        document.getElementById("posts not-completed").className = ""
+      }
     }
-    else if(id == "in-progress"){
-      document.getElementById("posts not-completed").className = "hidden"
-      document.getElementById("posts completed").className = "hidden"
-      event.target.className = "btn btn-light-blue active"
-      document.getElementById("not-completed").className = "btn btn-light-blue"
-      document.getElementById("completed").className = "btn btn-light-blue"
-      document.getElementById("posts in-progress").className = ""
-    }
-    else{
-      document.getElementById("posts in-progress").className = "hidden"
-      document.getElementById("posts completed").className = "hidden"
-      event.target.className = "btn btn-light-blue active"
-      document.getElementById("in-progress").className = "btn btn-light-blue"
-      document.getElementById("completed").className = "btn btn-light-blue"
-      document.getElementById("posts not-completed").className = ""
-    }
-  }
 
-</script>
-
+  </script>
+</div>
 </body>

@@ -18,7 +18,7 @@
   }
 
   #page-container{
-    padding: 10%;
+    padding: 5%;
   }
 
   /* Extra small devices (phones, 600px and down) */
@@ -68,13 +68,13 @@
         <p class="text-light text-center h1">
             Hi, <%= current_worker.first_name %>
         </p>
-    <div class="container p-2 text-center text-light h3">Here are your selected jobs</div>
+    <div class="container p-2 text-center text-light h3">Here are your jobs</div>
 
 
   <div class="btn-group container-fluid p-3 my-3 text-black">
-    <button id="not-completed" type="button" class="btn btn-light-blue active">To-Do</button>
-    <button id="in-progress" type="button" class="btn btn-light-blue">In-Progress</button>
-    <button id="completed" type="button" class="btn btn-light-blue">Completed</button>
+    <button id="not-completed" type="button" class="btn btn-cyan active">To-Do</button>
+    <button id="in-progress" type="button" class="btn btn-cyan">In-Progress</button>
+    <button id="completed" type="button" class="btn btn-cyan">Completed</button>
   </div>
 
   <div id="posts not-completed"> 
@@ -196,25 +196,25 @@
     if(id == "completed"){
       document.getElementById("posts not-completed").className = "hidden"
       document.getElementById("posts in-progress").className = "hidden"
-      event.target.className = "btn btn-light-blue active"
-      document.getElementById("not-completed").className = "btn btn-light-blue"
-      document.getElementById("in-progress").className = "btn btn-light-blue"
+      event.target.className = "btn btn-cyan active"
+      document.getElementById("not-completed").className = "btn btn-cyan"
+      document.getElementById("in-progress").className = "btn btn-cyan"
       document.getElementById("posts completed").className = ""
     }
     else if(id == "in-progress"){
       document.getElementById("posts not-completed").className = "hidden"
       document.getElementById("posts completed").className = "hidden"
-      event.target.className = "btn btn-light-blue active"
-      document.getElementById("not-completed").className = "btn btn-light-blue"
-      document.getElementById("completed").className = "btn btn-light-blue"
+      event.target.className = "btn btn-cyan active"
+      document.getElementById("not-completed").className = "btn btn-cyan"
+      document.getElementById("completed").className = "btn btn-cyan"
       document.getElementById("posts in-progress").className = ""
     }
     else{
       document.getElementById("posts in-progress").className = "hidden"
       document.getElementById("posts completed").className = "hidden"
-      event.target.className = "btn btn-light-blue active"
-      document.getElementById("in-progress").className = "btn btn-light-blue"
-      document.getElementById("completed").className = "btn btn-light-blue"
+      event.target.className = "btn btn-cyan active"
+      document.getElementById("in-progress").className = "btn btn-cyan"
+      document.getElementById("completed").className = "btn btn-cyan"
       document.getElementById("posts not-completed").className = ""
     }
   }
