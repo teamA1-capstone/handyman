@@ -13,13 +13,64 @@
     display: block;
   }
 
+  body{
+    background-image: url(<%= asset_path 'worker-jobs-pic.jpg' %>);
+  }
+
+  #page-container{
+    padding: 10%;
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 400%;
+    }
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 300%;
+    }
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 200%;
+    }
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 150%;
+    }
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+  }
 </style>
 
-
-<h1 class="header-center">Hi, <%= current_worker.first_name %></h1>
-<div class="container p-2 text-center h3">Here are your selected jobs</div>
-
 <body>
+<div class="container-fluid" id='page-container' style="background: rgba(0, 0, 0, 0.5);">
+        <p class="text-light text-center h1">
+            Hi, <%= current_worker.first_name %>
+        </p>
+    <div class="container p-2 text-center text-light h3">Here are your selected jobs</div>
+
+
   <div class="btn-group container-fluid p-3 my-3 text-black">
     <button id="not-completed" type="button" class="btn btn-light-blue active">To-Do</button>
     <button id="in-progress" type="button" class="btn btn-light-blue">In-Progress</button>
@@ -170,4 +221,5 @@
 
 </script>
 
+</div>
 </body>
