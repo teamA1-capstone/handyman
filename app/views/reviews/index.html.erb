@@ -1,16 +1,12 @@
 <h2 class="text-center"> <%= @worker.first_name %>'s Work Performance </h2>
 
-<p>
-    <%= link_to 'Back To Worker',worker_path(@index), class: 'btn btn-primary' %>
-</p><br>
-
-    <% @job.each_with_index do |job, index| %>
+    <% @job.each do |job| %>
         <% if job.reviews != nil %>
-            <div class="posting" data-turbolinks="false">
-                
-                <%= link_to "#{job.reviews.headline}", review_path(@index, @worker, job.reviews), class: 'btn btn-success' %>
-                
-            </div><br>
+            <div class="container p-3 mb-5 mt-5 border border-dark w-50">
+                <% @review = job.reviews%>
+                <%= render :partial => 'review', locals: { review: @review } %>
+                <h5 class="container p-3">Reviewed by <%= job.customer_first_name%></h5>
+            </div>
         <% else %>
             <h3 class= "text-center"> No Available Reviews </h3>
         <% end %>
