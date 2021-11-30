@@ -1,0 +1,22 @@
+<h1 class="header-center">Job results</h1>
+
+<div class="posts">
+  <% @jobs.each_with_index do |job, index| %>
+    <div class="posting">
+      <a data-toggle="collapse" href="#collapseExample<%= index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <%= job.name %>
+      </a>
+
+      <div class="collapse" id="collapseExample<%= index %>">
+        <div class="card card-body">
+          <h3><%= job.customer.first_name%></h3>
+          <p><%= job.specialty %></p>
+          <p><%= job.description %></p>
+          <p>For more information, contact <span style="font-weight:bold"><%= job.customer.first_name%></span> at:
+            <li><%= job.customer.email%></li>
+          </p>
+        </div>
+      </div>
+    </div>
+
+<% end %>

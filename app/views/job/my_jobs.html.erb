@@ -52,6 +52,7 @@
           <div class="container-fluid p-3 my-3 bg-light text-black">
             <% @job = job %>
             <%= render :partial => 'job', locals: { job: @job } %>
+            <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
           </div>
 
         <% end %>
@@ -63,7 +64,6 @@
   <div id="posts in-progress" class="hidden">
 
     <% if @in_progress_jobs.size() == 0 %>
-
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'no_jobs_in_progress_message'%>
       </div>
@@ -84,7 +84,6 @@
 
   <div id="posts completed" class="hidden">
     <% if @completed_jobs.size() == 0 %>
-
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'no_jobs_completed_message'%>
       </div>

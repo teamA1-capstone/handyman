@@ -157,3 +157,21 @@ rev2 = Review.create!(
     pictures: "",
     job: job1
 ) 
+
+rev3 = Review.create!(
+    headline: "Honest review",
+    body: "the worker was largely good",
+    skill_rating: 5,
+    honesty_rating: 4,
+    reliability_rating: 4,
+    focused_rating: 3,
+    pictures: "",
+    job: job3
+)
+
+mes1 = Message.create!(
+    subject: "Finished Job",
+    body: "Good Job!",
+    sender: kirk,
+    receiver: builder_bob
+)
