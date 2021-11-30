@@ -4,7 +4,8 @@
   }
 
   body{
-    background-image: url(<%= asset_path 'work-studio.jpg' %>);
+    background-image: url(<%= asset_path 'assorted-tools.jpg' %>);
+    background-position: bottom;
   }
 
   #page-container{
@@ -53,16 +54,17 @@
   }
 </style>
 
-<div class = "container p-3 my-3 text-light" style="background: rgba(0, 0, 0, 0.5);">
+<body>
+<div class = "container p-3 my-3 text-dark" style="background: rgba(248, 249, 250, 0.8);">
 <h1 class="text-center">Available Workers</h1>
-  <div class="container text-light">
-    <a class="text-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <div class="container text-light font-weight-bold">
+    <a class="text-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
       Filter
     </a>
 
     <div class="collapse" id="collapseExample">
       <li class="list-inline-item dropdown">
-        <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="this.blur();">
+        <button type="button" class="btn dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="this.blur();">
           Type
         </button>
 
@@ -78,7 +80,7 @@
       </li>
     
       <li class="list-inline-item dropdown">
-        <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Sort By
         </button>
         <div class="dropdown-menu">
@@ -88,7 +90,7 @@
       </li>
 
       <li class="list-inline-item dropdown">
-        <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           By Review
         </button>
         <div class="dropdown-menu">
@@ -102,10 +104,10 @@
     </div>
   </div>
 
-  <table class="table text-light">
+  <table class="table text-dark font-weight-bolder" style="overflow-y:auto;">
 
     <thead>
-      <tr style="background-color:#7DAFE8;color:#ffffff;">
+      <tr class="light-blue"style="background-color:#7DAFE8;color:#ffffff;">
           <th>Name</th>
           <th>Specialty</th>
           <th>Rating</th>
@@ -122,13 +124,13 @@
       <% else %>
         <% @workers_to_display.each do |w| %>
           <tr>
-            <td><%= w.first_name %> <%= w.last_name %></td>
+            <td><%= w.name %></td>
             <td><%= w.specialty%></td>
             <td>
 
               <%# this link takes the user to the worker reviews page%>
               <%= link_to worker_reviews_path(@index, w) do %>
-                <div class="text-light"style="inline-block;">
+                <div class="text-dark"style="inline-block;">
 
                   <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
                   <%# and then @star is passed along to the partial "reviews/stars" %>
@@ -140,7 +142,7 @@
               
               <% end %>
             </td>
-            <td><%= link_to 'More Info', worker_path(@index, w), class: "text-table-color" %></td>
+            <td><%= link_to 'More Info', worker_path(@index, w), class: "text-dark" %></td>
           </tr>
         <% end %> 
       <% end %>
@@ -149,6 +151,4 @@
   </table>
 </div>
 
-<p>
-  <%= link_to 'Home', home_path, class: 'btn btn-primary'%>
-</p>
+</body>
