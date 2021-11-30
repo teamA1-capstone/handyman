@@ -39,8 +39,12 @@ class WorkerController < ApplicationController
         if params[:search].blank?
           redirect_to worker_directory_path(-1)
         else
+          # @results returns searches done for first name or last name or the specialty
+          # of the worker
           @parameter = params[:search].downcase
           @results = Worker.all.where("lower(first_name) LIKE :search", search: "%#{@parameter}%")
+          @results += Worker.all.where("lower(last_name) LIKE :search", search: "%#{@parameter}%")
+          @results += Worker.all.where("lower(specialty) LIKE :search", search: "%#{@parameter}%")
         end
     end
 

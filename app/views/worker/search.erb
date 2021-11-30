@@ -12,9 +12,11 @@
 
   <tbody>
     <% @results.each do |result|%>
+      <% if result.invisibility == 0 %>
         <td><%= result.first_name %> <%= result.last_name %></td>
         <td><%= result.specialty %></td>
         <td><%= link_to 'More Info', worker_path(-1, result) %></td>
+      <% end %>
     <% end %>
   
   </tbody>
