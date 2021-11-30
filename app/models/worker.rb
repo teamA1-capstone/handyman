@@ -38,6 +38,10 @@ class Worker < ApplicationRecord
     inverse_of: :worker
   )
 
+  def name
+    first_name + " " + last_name
+  end
+
   def average_rating
     result = 0.0
     index = jobs.size()
