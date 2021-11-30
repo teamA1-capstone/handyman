@@ -2,11 +2,59 @@
   a{
     text-decoration: none;
   }
+
+  body{
+    background-image: url(<%= asset_path 'work-studio.jpg' %>);
+  }
+
+  #page-container{
+    padding: 10%;
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 400%;
+    }
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 300%;
+    }
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 200%;
+    }
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 150%;
+    }
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+  }
 </style>
 
+<div class = "container p-3 my-3 text-light" style="background: rgba(0, 0, 0, 0.5);">
 <h1 class="text-center">Available Workers</h1>
-
-<div class = "container p-3 my-3 bg-light text-black">
   <div class="filter">
     <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
       Filter
@@ -54,7 +102,7 @@
     </div>
   </div>
 
-  <table class="table table-hover">
+  <table class="table text-light">
 
     <thead>
       <tr style="background-color:#7DAFE8;color:#ffffff;">
