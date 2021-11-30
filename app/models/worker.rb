@@ -74,7 +74,7 @@ class Worker < ApplicationRecord
     reviews.each do |review|
       result = result + review.average_rating
     end
-    return result/number_of_reviews
+    return result/(number_of_reviews*5)
   end
 
   def number_of_reviews
