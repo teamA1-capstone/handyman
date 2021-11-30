@@ -93,6 +93,19 @@ doe_jane = Worker.create!(
     invisibility: 0
 )
 
+maurice = Worker.create!(
+    email: "moss@email.com",
+    password: "password",
+    first_name: "Maurice",
+    last_name: "Moss",
+    street_address: "123 USS Enterorise",
+    city: "Riverside",
+    state: "Iowa",
+    zip_code: 52327,
+    specialty: 'Computer Repair Servicer',
+    invisibility: 0
+)
+
 Frank_Honest = Worker.create!(
     email: 'honest@email.com',
     password: 'password',

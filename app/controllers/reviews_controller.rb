@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+
+    before_action :authenticate_customer!, except: [:index, :show]
+
     def index
         @index = params[:specialty_index].to_i
 

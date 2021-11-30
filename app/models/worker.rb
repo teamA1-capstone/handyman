@@ -54,6 +54,16 @@ class Worker < ApplicationRecord
     as: :receiver
   )
 
+  def select_job(job_id)
+    @job = Job.find(job_id)
+    @job.worker_id = id
+    if @job.save
+      flash[:success] = "Job selected!"
+    else
+      flash.now[:error] = "Job selection failed."
+    end
+  end
+
   def name
     first_name + " " + last_name
   end

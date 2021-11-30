@@ -22,7 +22,8 @@
   "light-brown": #ffc88a,
   "table-color": #7DAFE8,
   "dark-red": #940101,
-  "light-red": #d34343
+  "light-red": #d34343,
+  "light-blue": #019494
 );
 
 // The following block adjust the navbar's "Services" dropdown to scroll 
@@ -38,4 +39,12 @@
 
  .alert-dismissible {
   padding-left: $close-font-size + $alert-padding-x * 2;
+}
+
+.customer{
+  background-color: #ffc88a;
+}
+
+.worker{
+  background-color: #d34343;
 }

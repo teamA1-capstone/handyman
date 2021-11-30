@@ -1,5 +1,7 @@
 class WorkerController < ApplicationController
 
+    before_action :authenticate_worker!, except: [:home, :index]
+
     def home
         $SWITCH = 0
         render :worker_home
@@ -7,6 +9,38 @@ class WorkerController < ApplicationController
 
     def worker_profile
         render :worker_profile
+    end
+
+    def worker_jobs
+      @not_started_jobs = current_worker.jobs.where("in_progress = ?", false)
+      @in_progress_jobs = current_worker.jobs.where("completed = ? AND in_progress = ?",false, true)
+      @completed_jobs = current_worker.jobs.where("completed = ? AND in_progress = ?", true, false)
+      render :worker_jobs
+    end
+
+    def job_selection
+      @job = Job.find(params[:job_id])
+      @job.worker = current_worker
+      if @job.save
+        flash[:success] = "Job selected!"
+        render :worker_profile
+      else
+        flash[:error] = "Job selection failed."
+        redirect_to jobs_url
+      end
+    end
+
+    def job_remove
+      @job = Job.find(params[:job_id])
+      @job.worker = worker.find(1)
+      @job.save
+    end
+
+    def job_start
+      @job = Job.find(params[:job_id])
+      @job.in_progress = true
+      @job.save
+      render :worker_jobs
     end
 
     def index
