@@ -55,14 +55,14 @@
 
 <div class = "container p-3 my-3 text-light" style="background: rgba(0, 0, 0, 0.5);">
 <h1 class="text-center">Available Workers</h1>
-  <div class="filter">
-    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <div class="container text-light">
+    <a class="text-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
       Filter
     </a>
 
     <div class="collapse" id="collapseExample">
       <li class="list-inline-item dropdown">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="this.blur();">
+        <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="this.blur();">
           Type
         </button>
 
@@ -78,7 +78,7 @@
       </li>
     
       <li class="list-inline-item dropdown">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Sort By
         </button>
         <div class="dropdown-menu">
@@ -88,7 +88,7 @@
       </li>
 
       <li class="list-inline-item dropdown">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           By Review
         </button>
         <div class="dropdown-menu">
@@ -128,7 +128,7 @@
 
               <%# this link takes the user to the worker reviews page%>
               <%= link_to worker_reviews_path(@index, w) do %>
-                <div style="inline-block;">
+                <div class="text-light"style="inline-block;">
 
                   <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
                   <%# and then @star is passed along to the partial "reviews/stars" %>
@@ -140,7 +140,7 @@
               
               <% end %>
             </td>
-            <td><%= link_to 'More Info', worker_path(@index, w) %></td>
+            <td><%= link_to 'More Info', worker_path(@index, w), class: "text-table-color" %></td>
           </tr>
         <% end %> 
       <% end %>
