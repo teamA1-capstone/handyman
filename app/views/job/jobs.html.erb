@@ -23,9 +23,10 @@
 
 <div style="margin-top:20px;">
   <% if customer_signed_in? && $SWITCH == 1%>
-    <p>
+    <div btn-group>
       <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
-    </p>
+      <%= link_to 'My Jobs',my_jobs_path, class: 'btn btn-custom-color' %>
+    </div>
   <% end %>
 </div>
 
