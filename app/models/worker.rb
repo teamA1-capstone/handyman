@@ -50,26 +50,26 @@ class Worker < ApplicationRecord
       result = result + jobs[index-1].average_rating
       index = index - 1
     end
-    return result
+    return result/jobs.size()
   end
 
   def number_of_ratings
     return jobs.size()
   end
   
-  def stars
+  def rating
     if(average_rating > 0.8)
-      return "5 Stars"
+      return 5
     elsif (average_rating > 0.6)
-      return "4 Stars"
+      return 4
     elsif (average_rating > 0.4)
-      return "3 Stars"
+      return 3
     elsif (average_rating > 0.2)
-      return "2 Stars"
+      return 2
     elsif (average_rating > 0.0)
-      return "1 Star"
+      return 1
     else
-      return "No Reviews"
+      return 0
     end
   end
 end

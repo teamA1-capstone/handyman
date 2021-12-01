@@ -8,8 +8,8 @@
   <p> Reliability: </p>
 
   <div id="reliability">
-    <% @star = @review.reliability_rating%>
-    <%= render :partial => 'reviews/stars', locals: { post: @star } %>
+    <% @rating = @review.reliability_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
   </div>
 
   <br>
@@ -17,8 +17,8 @@
   <p> Honesty: </p>
   
   <div id="honesty">
-    <% @star = @review.honesty_rating%>
-    <%= render :partial => 'reviews/stars', locals: { post: @star } %>
+    <% @rating = @review.honesty_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
   </div>
 
   <br>
@@ -26,8 +26,8 @@
   <p> Skill: </p>
 
   <div id="skill" >
-    <% @star = @review.skill_rating%>
-    <%= render :partial => 'reviews/stars', locals: { post: @star } %>
+    <% @rating = @review.skill_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
   </div>
 
   <br>
@@ -35,8 +35,8 @@
   <p> Focus: </p>
 
   <div class="focus">
-    <% @star = @review.focused_rating%>
-    <%= render :partial => 'reviews/stars', locals: { post: @star } %>
+    <% @rating = @review.focused_rating%>
+    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
   </div>
 
   <!-- there is a picture uploaded, just cant figure out how to display -->
