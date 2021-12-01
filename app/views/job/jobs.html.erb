@@ -33,9 +33,15 @@
 <div class="posts">
   <% if @jobs.size() == 0 %>
     <div class="container-fluid p-3 my-3 bg-light text-black">
-      <p>
-        There are no job posts at this time. Come back later.
-      </p>
+      <% if current_customer %>
+        <p>
+          There are no job posts at this time. Add one now?
+        </p>
+      <% else%>
+        <p>
+          There are no job posts at this time. Come back later.
+        </p>
+      <% end %>
     </div>
   <% else %>
     <% @jobs.each do |job| %>
