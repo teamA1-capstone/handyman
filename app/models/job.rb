@@ -50,6 +50,14 @@ class Job < ApplicationRecord
         customer.name
       end
 
+      def worker_name
+        worker.name
+      end
+
+      def worker_id
+        worker.id
+      end
+
       def customer_email
         customer.email
       end
