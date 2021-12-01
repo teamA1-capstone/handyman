@@ -1,6 +1,6 @@
 class JobController < ApplicationController
   
-  before_action :authenticate_customer!, except: [:index, :jobs]
+  before_action :authenticate_customer!, except: [:index, :jobs, :job_search]
 
   def jobs
     @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
