@@ -67,7 +67,7 @@
 
   <div id="posts completed" class="hidden">
   
-    <% @jobs.each do |job| %>
+    <% @jobs.each_with_index do |job, index| %>
       
       <% if job.customer_id == current_customer.id and job.completed == true%>
         <% if job.reviews != nil%>
@@ -88,10 +88,24 @@
               </p>
             </div>
           <% else %>
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header" id="headingOne<%=index.to_s%>">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%=index.to_s%>" aria-expanded="false" aria-controls="collapseOne<%=index.to_s%>">
+                      Collapsible Group Item #1
+                    </button>
+                  </h5>
+                </div>
 
-            <% @review = job.reviews%>
-            <%= render :partial => 'reviews/review', locals: { review: @review } %>
-          
+                <div id="#collapse<%=index.to_s%>" class="collapse" aria-labelledby="headingOne<%=index.to_s%>" data-parent="#accordion">
+                  <div class="card-body">
+                    <% @review = job.reviews%>
+                    <%= render :partial => 'reviews/review', locals: { review: @review } %>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% end %>
         </div>
       <% end %>
