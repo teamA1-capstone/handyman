@@ -36,13 +36,16 @@
     </div>
     
     <% @jobs.each do |job| %>
+    
+      <% @job = job %>
+
       <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
         <div class="container-fluid p-3 my-3 bg-light text-black">
-          <%= job.name %>
-          <h3>Posted By <%= job.customer.first_name%></h3>
-          <p><%= job.specialty %></p>
-          <p><%= job.description %></p>
+
+          <%= render :partial => 'job', locals: { post: @job } %>
+        
         </div>
+      
       <% end %>
     <% end %>
 
@@ -52,10 +55,9 @@
     <% @jobs.each do |job| %>
       <% if job.customer_id == current_customer.id and job.in_progress == true%>
         <div class="container-fluid p-3 my-3 bg-light text-black">
-          <%= job.name %>
-          <h3>Posted By <%= job.customer.first_name%></h3>
-          <p><%= job.specialty %></p>
-          <p><%= job.description %></p>
+
+          <%= render :partial => 'job', locals: { post: @job } %>
+        
         </div>
       <% end %>
     <% end %>
@@ -71,10 +73,8 @@
         <% end %>
         
         <div class="container-fluid p-3 my-3 bg-light text-black">
-          <h1><%= job.name %></h1>
-          <p>Posted By <strong> <%= job.customer_name%> </strong> </p>
-          <p> Indicated Specialization: <%= job.specialty %></p>
-          <p>Job Info: <%= job.description %></p>
+          
+          <%= render :partial => 'job', locals: { post: @job } %>
 
           <p>Completed By <%= link_to job.worker_name, worker_path(1, job.worker_id) %></p>
 
@@ -87,7 +87,7 @@
           <% else %>
 
             <% @review = job.reviews%>
-            <%= render :partial => 'review', locals: { post: @review } %>
+            <%= render :partial => 'reviews/review', locals: { post: @review } %>
           
           <% end %>
         </div>
@@ -132,44 +132,6 @@
       document.getElementById("completed").className = "btn btn-primary"
       document.getElementById("posts not-completed").className = ""
     }
-  }
-
-  function rating(reliability, honesty, skill, focused) {
-    reliabilityStars(reliability);
-    honestyStars(honesty);
-    skillStars(skill);
-    focusedStars(focused);
-  }
-
-  function reliabilityStars(rating){
-    while(rating > 0){
-      document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
-      rating = rating - 1;
-    }
-  }
-
-  function honestyStars(rating){
-    rating = rating + 5;
-    while(rating > 5){
-        document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
-        rating = rating - 1;
-    }
-  }
-
-  function skillStars(rating){
-    rating = rating + 10;
-    while(rating > 10){
-        document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
-        rating = rating - 1;
-    }
-  }
-
-  function focusedStars(rating){
-    rating = rating + 15;
-    while(rating > 15){
-        document.getElementById(rating.toString()).src = "<%= asset_path 'star-fill-grey-with-outline.svg'%>"; 
-        rating = rating - 1;
-    }   
   }
 
 </script>
