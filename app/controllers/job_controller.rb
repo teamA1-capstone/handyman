@@ -75,4 +75,15 @@ class JobController < ApplicationController
 
     end
   end
+
+
+  def job_search
+    if params[:job_search].blank?
+      redirect_to jobs_path(-1)
+    else
+      @parameter = params[:job_search].downcase
+      @jobs = Job.all.where("lower(specialty) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+  
 end

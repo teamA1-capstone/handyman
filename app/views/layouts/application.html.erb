@@ -11,6 +11,7 @@
   </head>
 
   <main role="main" class="container">
+
     <% flash.each do |key, message| %>
       <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
         <%= message %>
@@ -116,6 +117,16 @@
               <li class="nav-item">
                 <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' %>
               </li>
+                <li class="nav-item ">
+                <%= form_tag(job_search_path, :method => "get") do %>
+                <div class="input-group">
+                  <%= search_field_tag :job_search, params[:job_search], placeholder: "Find a job", class: "form-control" %>
+                  <div class="input-group-btn">
+                    <%= button_tag "Search", :class => 'btn btn-primary', :name => nil%>
+                  </div>
+                </div>
+                </li>
+                <% end %>
             <% else %>
               <li class="nav-item">
                 <%= link_to 'Sign In', new_worker_session_path, class: 'nav-link'%>
