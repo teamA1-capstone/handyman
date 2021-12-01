@@ -27,7 +27,6 @@ class JobController < ApplicationController
   def new
     @customer = Customer.find(current_customer.id)
     @job = Job.new
-    $SPECIALTY_TYPES.prepend("select")
     render :new
   end
 
@@ -44,7 +43,6 @@ class JobController < ApplicationController
       flash.now[:error] = "Job failed to post"
       render :new
     end
-    $SPECIALTY_TYPES.delete_at(0)
   end
 
   def delete

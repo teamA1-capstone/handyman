@@ -1,13 +1,16 @@
 <h2 class="text-center"> <%= @worker.first_name %>'s Work Performance </h2>
 
-    <% @job.each do |job| %>
-        <% if job.reviews != nil %>
-            <div class="container p-3 mb-5 mt-5 border border-dark w-50">
-                <% @review = job.reviews%>
+    <div class="container p-3 w-75 mx-auto bg-light">
+    <% if @reviews.size() != 0 %>
+        <% @reviews.each do |review| %>
+            <div class="container p-3 mb-5 mt-5 w-75" style="border-bottom: 1px solid black;">
+                <% @review = review%>
                 <%= render :partial => 'review', locals: { review: @review } %>
-                <h5 class="container p-3">Reviewed by <%= job.customer_first_name%></h5>
+                <h5 class="p-3">Reviewed by <%= review.customer_name%></h5>
             </div>
-        <% else %>
-            <h3 class= "text-center"> No Available Reviews </h3>
         <% end %>
+    <% else %>
+        <h3 class= "text-center"> No Available Reviews </h3>
     <% end %>
+    
+    </div>

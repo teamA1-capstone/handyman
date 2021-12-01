@@ -24,6 +24,12 @@
 #  fk_rails_...  (worker_id => workers.id)
 #
 class Job < ApplicationRecord
+
+      # Make sure all the attributes have content assigned.
+      validates :description, :name, :specialty, presence: true
+
+      validates :specialty, inclusion: $SPECIALTY_TYPES
+      
     belongs_to(
         :customer,
         class_name: 'Customer',

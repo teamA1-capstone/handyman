@@ -83,14 +83,14 @@
       </p>
     </div>
     
-    <% if @not_selected_jobs.size() == 0 %>
+    <% if @not_started_jobs.size() == 0 %>
 
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'job/no_jobs_message'%>
       </div>
       
     <% else %>
-      <% @not_selected_jobs.each do |job| %>
+      <% @not_started_jobs.each do |job| %>
         <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
 
           <div class="container-fluid p-3 my-3 bg-light text-black">

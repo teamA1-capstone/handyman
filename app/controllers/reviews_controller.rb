@@ -6,13 +6,7 @@ class ReviewsController < ApplicationController
         @index = params[:specialty_index].to_i
 
         @worker = Worker.find(params[:id])
-        @job = @worker.jobs
-        
-        @job.each_with_index do |job, index|
-            if(job.reviews) != nil 
-                @reviews = job.reviews
-            end
-        end
+        @reviews = @worker.reviews
 
         render :index
     end

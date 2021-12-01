@@ -121,6 +121,7 @@
             <% @job = job %>
             <%= render :partial => 'job/job', locals: { job: @job } %>
           
+            <%= link_to 'Move to Completed', job_complete_path(job), class: 'btn btn-dark-red'%>
           </div>
         <% end %>
       <% end %>
@@ -150,8 +151,8 @@
             <p>Completed By <%= link_to job.worker_name, worker_path(1, job.worker_id) %></p>
 
             <% if job.reviews == nil%>
-              <div class="btn-group container-fluid p-3 my-3 text-black w-25">
-                <%= link_to 'add a review', new_review_path(job), class: "btn btn-custom-color" %>
+              <div class="container p-3 bg-light">
+                <p>Customer has not reviewed your work yet. Come back later.</p>
               </div>
             <% else %>
               
@@ -159,7 +160,7 @@
                 <div class="card-header" id="heading<%=index.to_s%>">
                   <h5 class="mb-0">
                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%=index.to_s%>" aria-expanded="false" aria-controls="collapseOne" onclick="this.blur();">
-                      <% @rating =@review.rating %>
+                      <% @rating = @review.average_rating %>
                       Average rating for <%= job.worker_name%>
                       <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
                     </button>

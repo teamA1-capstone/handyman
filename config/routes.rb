@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'home/worker/worker-profile/my-jobs', to: 'worker#worker_jobs', as: 'worker_jobs'
   get 'home/worker/worker-profile/my-jobs/:job_id/start', to: 'worker#job_start', as: 'job_start'
   get 'home/worker/worker-profile/my-jobs/:job_id/remove', to: 'worker#job_remove', as: 'job_remove'
+  get 'home/worker/worker-profile/my-jobs/:job_id/finish', to: 'worker#job_complete', as: 'job_complete'
 
   get 'home/worker-directory/:specialty_index', to: 'worker#index', as: 'worker_directory'
   get 'home/worker-directory/:specialty_index/:id', to: 'worker#show', as: 'worker'

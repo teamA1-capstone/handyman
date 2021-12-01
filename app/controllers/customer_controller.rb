@@ -11,7 +11,7 @@ class CustomerController < ApplicationController
     end
 
     def my_jobs
-        @not_selected_jobs = current_customer.jobs.where("worker_id = ?", 1)
+        @not_started_jobs = current_customer.jobs.where("in_progress = ?", false)
         @in_progress_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?",false, true)
         @completed_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?", true, false)
         render :my_jobs
