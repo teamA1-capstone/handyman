@@ -96,7 +96,10 @@
           <div class="container-fluid p-3 my-3 bg-light text-black">
             <% @job = job %>
             <%= render :partial => 'job/job', locals: { job: @job } %>
-            <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
+            <div class="btn-group-vertical p-1">
+              <%= link_to "Edit", edit_path(job), class: 'btn btn-custom-color'%>
+              <%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-light-red" %>
+            </div>
           </div>
 
         <% end %>
