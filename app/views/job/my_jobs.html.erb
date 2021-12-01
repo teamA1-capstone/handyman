@@ -13,37 +13,31 @@
     display: block;
   }
 
-  .posting{
-    border-style: solid;
-    margin-bottom: 5px;
-    margin-left: 22%;
-    padding-left: 5px;
-    width: 58%;
-  }
-
-  #button-container{
-    padding-left:15%;
-    margin-left: 22%;
-    width: 58%;
-  }
 </style>
 
 
 <h1 class="header-center">My Jobs</h1>
 
 <body>
-  <ul id="button-container">
+  <div class="btn-group container-fluid p-3 my-3 text-black">
     <button id="not-completed" type="button" class="btn btn-primary active">not started</button>
     <button id="in-progress" type="button" class="btn btn-primary">in-progress</button>
     <button id="completed" type="button" class="btn btn-primary">completed</button>
-  </ul>
+  </div>
 
-  <div id="posts not-completed">
-    <% @jobs.each_with_index do |job, index| %>
-
+  <div id="posts not-completed"> 
+    
+    <div style="margin-top:20px;">
+      <% if customer_signed_in? && $SWITCH == 1%>
+        <p>
+          <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
+        </p>
+      <% end %>
+    </div>
+    
+    <% @jobs.each do |job| %>
       <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
-      
-        <div class="posting">
+        <div class="container-fluid p-3 my-3 bg-light text-black">
           <%= job.name %>
           <h3>Posted By <%= job.customer.first_name%></h3>
           <p><%= job.specialty %></p>
@@ -52,19 +46,12 @@
       <% end %>
     <% end %>
 
-    <div style="margin-top:20px;">
-      <% if customer_signed_in? && $SWITCH == 1%>
-        <p>
-          <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
-        </p>
-      <% end %>
-    </div>
   </div>
 
   <div id="posts in-progress" class="hidden">
-    <% @jobs.each_with_index do |job, index| %>
+    <% @jobs.each do |job| %>
       <% if job.customer_id == current_customer.id and job.in_progress == true%>
-        <div class="posting">
+        <div class="container-fluid p-3 my-3 bg-light text-black">
           <%= job.name %>
           <h3>Posted By <%= job.customer.first_name%></h3>
           <p><%= job.specialty %></p>
@@ -77,13 +64,13 @@
   <div id="posts completed" class="hidden">
   
     <% @jobs.each do |job| %>
-    
+      
       <% if job.customer_id == current_customer.id and job.completed == true%>
         <% if job.reviews != nil%>
           <% ratings = [job.reviews.reliability_rating, job.reviews.honesty_rating, job.reviews.skill_rating, job.reviews.focused_rating]%>
         <% end %>
         
-        <div class="posting">
+        <div class="container-fluid p-3 my-3 bg-light text-black">
           <h1><%= job.name %></h1>
           <p>Posted By <strong> <%= job.customer_name%> </strong> </p>
           <p> Indicated Specialization: <%= job.specialty %></p>
