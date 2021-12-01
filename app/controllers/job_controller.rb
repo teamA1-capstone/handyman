@@ -1,7 +1,7 @@
 class JobController < ApplicationController
 
   def jobs
-    @jobs = Job.where({completed: false, in_progress: false})
+    @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
     render :jobs
   end
 
