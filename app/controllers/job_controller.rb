@@ -55,7 +55,9 @@ class JobController < ApplicationController
 
 
   def my_jobs
-    @jobs = current_customer.jobs
+    @not_selected_jobs = current_customer.jobs.where("worker_id = ?", 1)
+    @in_progress_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?",false, true)
+    @completed_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?", true, false)
     render :my_jobs
   end
 

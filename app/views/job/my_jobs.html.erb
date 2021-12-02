@@ -28,86 +28,101 @@
   <div id="posts not-completed"> 
     
     <div style="margin-top:20px;">
-      <% if customer_signed_in? && $SWITCH == 1%>
-        <p>
-          <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
-        </p>
-      <% end %>
+      <p>
+        <%= link_to "Add A Job Posting", new_job_path, class: 'btn btn-custom-color'%>
+      </p>
     </div>
     
-    <% @jobs.each do |job| %>
-    
+    <% if @not_selected_jobs.size() == 0 %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <%= render :partial => 'no_jobs_message'%>
+      </div>
+    <% else %>
+      <% @not_selected_jobs.each do |job| %>
       
+        <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
+          <div class="container-fluid p-3 my-3 bg-light text-black">
 
-      <% if job.customer_id == current_customer.id and job.completed == false and job.in_progress == false%>
-        <div class="container-fluid p-3 my-3 bg-light text-black">
-
-          <% @job = job %>
-          <%= render :partial => 'job', locals: { job: @job } %>
+            <% @job = job %>
+            <%= render :partial => 'job', locals: { job: @job } %>
+          
+          </div>
         
-        </div>
-      
+        <% end %>
       <% end %>
     <% end %>
 
   </div>
 
   <div id="posts in-progress" class="hidden">
-    <% @jobs.each do |job| %>
-      <% if job.customer_id == current_customer.id and job.in_progress == true%>
-        <div class="container-fluid p-3 my-3 bg-light text-black">
 
-          <% @job = job %>
-          <%= render :partial => 'job', locals: { job: @job } %>
-        
-        </div>
+    <% if @not_selected_jobs.size() == 0 %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <%= render :partial => 'no_jobs_in_progress_message'%>
+      </div>
+    <% else %>
+      <% @in_progress_jobs.each do |job| %>
+        <% if job.customer_id == current_customer.id and job.in_progress == true%>
+          <div class="container-fluid p-3 my-3 bg-light text-black">
+
+            <% @job = job %>
+            <%= render :partial => 'job', locals: { job: @job } %>
+          
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
 
   <div id="posts completed" class="hidden">
-  
-    <% @jobs.each_with_index do |job, index| %>
-      
-      <% if job.customer_id == current_customer.id and job.completed == true%>
-        <% if job.reviews != nil%>
-          <% ratings = [job.reviews.reliability_rating, job.reviews.honesty_rating, job.reviews.skill_rating, job.reviews.focused_rating]%>
-        <% end %>
-        
-        <div class="container-fluid p-3 my-3 bg-light text-black">
+    <% if @not_selected_jobs.size() == 0 %>
+      <div class="container-fluid p-3 my-3 bg-light text-black">
+        <%= render :partial => 'no_jobs_completed_message'%>
+      </div>
+    <% else %>
+      <% @completed_jobs.each_with_index do |job, index| %>
 
-          <% @job = job %>
-          <%= render :partial => 'job', locals: { job: @job } %>
+        <% @review = job.reviews%>
 
-          <p>Completed By <%= link_to job.worker_name, worker_path(1, job.worker_id) %></p>
+        <% if job.customer_id == current_customer.id and job.completed == true%>
+          <% if job.reviews != nil%>
+            <% ratings = [job.reviews.reliability_rating, job.reviews.honesty_rating, job.reviews.skill_rating, job.reviews.focused_rating]%>
+          <% end %>
+          
+          <div class="container-fluid p-3 my-3 bg-light text-black">
 
-          <% if job.reviews == nil%>
-            <div data-turbolinks="false">
-              <p>
+            <% @job = job %>
+            <%= render :partial => 'job', locals: { job: @job } %>
+
+            <p>Completed By <%= link_to job.worker_name, worker_path(1, job.worker_id) %></p>
+
+            <% if job.reviews == nil%>
+              <div class="btn-group container-fluid p-3 my-3 text-black w-25">
                 <%= link_to 'add a review', new_review_path(job), class: "btn btn-custom-color" %>
-              </p>
-            </div>
-          <% else %>
-            <div id="accordion">
-              <div class="card">
-                <div class="card-header" id="headingOne<%=index.to_s%>">
+              </div>
+            <% else %>
+              
+              <div class="card border-dark">
+                <div class="card-header" id="heading<%=index.to_s%>">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%=index.to_s%>" aria-expanded="false" aria-controls="collapseOne<%=index.to_s%>">
-                      Collapsible Group Item #1
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%=index.to_s%>" aria-expanded="false" aria-controls="collapseOne" onclick="this.blur();">
+                      <% @rating =@review.rating %>
+                      Average rating for <%= job.worker_name%>
+                      <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
                     </button>
                   </h5>
                 </div>
 
-                <div id="#collapse<%=index.to_s%>" class="collapse" aria-labelledby="headingOne<%=index.to_s%>" data-parent="#accordion">
+                <div id="collapse<%=index.to_s%>" class="collapse bg-light" aria-labelledby="heading<%=index.to_s%>">
                   <div class="card-body">
-                    <% @review = job.reviews%>
                     <%= render :partial => 'reviews/review', locals: { review: @review } %>
                   </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
