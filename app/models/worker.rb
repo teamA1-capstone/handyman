@@ -49,13 +49,11 @@ class Worker < ApplicationRecord
 
   def average_rating
     result = 0.0
-    index = jobs.size()
-    
-    while index > 0
-      result = result + jobs[index-1].average_rating
-      index = index - 1
+
+    reviews.each do |review|
+      result = result + review.average_rating
     end
-    return result/jobs.size()
+    return result/number_of_reviews
   end
 
   def number_of_reviews
