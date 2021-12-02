@@ -21,6 +21,14 @@
   "custom-color": #456C97
 );
 
+// The following block adjust the navbar's "Services" dropdown to scroll 
+// only when the content of the scroll doesn't fit on the screen. 
+@media (max-width: 570px ),(max-height: 100vh) {
+  .dropdown-menu{
+      max-height:100vh;
+      overflow:scroll;
+  }
+}
 
  @import "bootstrap/scss/bootstrap";
  @import "bootswatch/dist/yeti/bootswatch";
