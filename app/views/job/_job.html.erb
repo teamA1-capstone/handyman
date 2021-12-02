@@ -1,4 +1,8 @@
   <h2><%= @job.name %></h2>
-  <p>Posted By <strong><%= @job.customer.first_name%></strong> </p>
+  <%if current_customer == @job.customer%>
+    <p>Posted By <strong>you</strong></p>
+  <% else %>
+    <p>Posted By <strong><%= @job.customer.first_name%></strong> </p>
+  <% end %>
   <p><%= @job.specialty %></p>
   <p><%= @job.description %></p>

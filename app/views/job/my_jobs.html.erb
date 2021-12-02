@@ -1,6 +1,12 @@
 <style>
   img{
     display: inline-block;
+    width: 15pt;
+    height: 15pt;
+    padding: 0px 1px;
+  }
+  small{
+    display: inline-block;
     width: 10pt;
     height: 10pt;
     padding: 0px 1px;
@@ -56,7 +62,7 @@
 
   <div id="posts in-progress" class="hidden">
 
-    <% if @not_selected_jobs.size() == 0 %>
+    <% if @in_progress_jobs.size() == 0 %>
 
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'no_jobs_in_progress_message'%>
@@ -77,7 +83,7 @@
   </div>
 
   <div id="posts completed" class="hidden">
-    <% if @not_selected_jobs.size() == 0 %>
+    <% if @completed_jobs.size() == 0 %>
 
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'no_jobs_completed_message'%>
@@ -99,13 +105,13 @@
                 <%= link_to 'add a review', new_review_path(job), class: "btn btn-custom-color" %>
               </div>
             <% else %>
-              <div class="card border-dark">
-                <div class="card-header" id="heading<%=index.to_s%>">
+              <div class="card border-secondary">
+                <div class="card-header bg-light" id="heading<%=index.to_s%>">
                   <h5 class="mb-0">
                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%=index.to_s%>" aria-expanded="false" aria-controls="collapseOne" onclick="this.blur();">
-                      <% @rating =@review.rating %>
-                      Average rating for <%= job.worker_name%>
+                      <% @rating = @review.average_rating %>
                       <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+                      <span style="font-size:10pt;">(See Details of <%= @review.worker_first_name%>'s Performance)</span>
                     </button>
                   </h5>
                 </div>
