@@ -84,7 +84,7 @@
             <%# and then @star is passed along to the partial "reviews/stars" %>
             <% @rating = w.rating %>
             <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
-            <span>(<%= w.number_of_ratings%>)</span>
+            <span>(<%= w.number_of_reviews%>)</span>
           
           </div>
 

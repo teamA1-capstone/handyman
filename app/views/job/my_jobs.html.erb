@@ -56,7 +56,7 @@
 
   <div id="posts in-progress" class="hidden">
 
-    <% if @not_selected_jobs.size() == 0 %>
+    <% if @in_progress_jobs.size() == 0 %>
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'no_jobs_in_progress_message'%>
       </div>
@@ -75,7 +75,7 @@
   </div>
 
   <div id="posts completed" class="hidden">
-    <% if @not_selected_jobs.size() == 0 %>
+    <% if @completed_jobs.size() == 0 %>
       <div class="container-fluid p-3 my-3 bg-light text-black">
         <%= render :partial => 'no_jobs_completed_message'%>
       </div>

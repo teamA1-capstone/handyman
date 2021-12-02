@@ -38,6 +38,11 @@ class Worker < ApplicationRecord
     inverse_of: :worker
   )
 
+  has_many(
+    :reviews, 
+    through: :jobs
+  )
+
   def name
     first_name + " " + last_name
   end
@@ -53,8 +58,8 @@ class Worker < ApplicationRecord
     return result/jobs.size()
   end
 
-  def number_of_ratings
-    return jobs.size()
+  def number_of_reviews
+    reviews.size()
   end
   
   def rating
