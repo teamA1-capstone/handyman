@@ -1,29 +1,43 @@
-<h1>Customer home page</h1>
-<p>
-<ul class="navbar-nav">
-      <% if customer_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Hi, #{current_customer.first_name}", nil, class: 'nav-link' %>
-        </li>
-        <p>
-        <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
-        </p>
-        <li class="nav-item">
-          <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign Up', new_customer_registration_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
-</p>
 
-<p>
-  <%= link_to 'Job Board', jobs_path, class: 'btn btn-primary'%>
-</p>
+<style>
+  body {
+    background-image: url(<%= asset_path 'home.jpg' %>);
+    background-repeat: no-repeat;
+    background-size: 100% 290%; /* width height */
+  }
+</style>
+
+<div class="container bg-light" style="margin-top:5px;">
+
+  <h1>Customer home page</h1>
+
+  <p>
+  <ul class="navbar-nav">
+        <% if customer_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Hi, #{current_customer.first_name}", nil, class: 'nav-link' %>
+          </li>
+          <p>
+          <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
+          </p>
+          <li class="nav-item">
+            <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', new_customer_registration_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+  </p>
+
+  <p>
+    <%= link_to 'Job Board', jobs_path, class: 'btn btn-primary'%>
+  </p>
+
+  </div>
 
 

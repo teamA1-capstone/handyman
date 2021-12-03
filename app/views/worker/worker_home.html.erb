@@ -1,3 +1,12 @@
+
+
+<style>
+  body {
+    background-image: url(<%= asset_path 'Handy2.jpeg' %>)
+    
+  }
+</style>
+
 <h1>Worker home page</h1>
 
 <p>
@@ -10,7 +19,7 @@
         <li><%= link_to 'My Profile', worker_profile_path, class: 'btn btn-primary'%></li>
         </p>
         <li class="nav-item">
-          <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
+          <%= button_to 'Sign Out', destroy_worker_session_path, method: :delete, class: 'nav-link' %>
         </li>
       <% else %>
         <li class="nav-item">
