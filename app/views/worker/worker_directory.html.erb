@@ -54,32 +54,34 @@
     </thead>
 
     <%# tbody is used to display the worker information in a table body%>
+    <%# if there are no workers to display, render a partial with the table data for no workers%>
     <tbody>
-      <% @workers_to_display.each do |w| %>
-        <% if w.invisibility != 1%>
-        <tr>
-          <td><%= w.first_name %> <%= w.last_name %></td>
-          <td><%= w.specialty%></td>
-          <td>
+      <% if @workers_to_display.size() == 0%>
+        <%= render :partial => 'no_workers_table_data'%>
+      <% else %>
+        <% @workers_to_display.each do |w| %>
+          <tr>
+            <td><%= w.first_name %> <%= w.last_name %></td>
+            <td><%= w.specialty%></td>
+            <td>
 
-          <%# this link takes the user to the worker reviews page%>
+              <%# this link takes the user to the worker reviews page%>
 
-          <%= link_to worker_reviews_path(@index, w) do %>
-            <div style="inline-block;">
+              <%= link_to worker_reviews_path(@index, w) do %>
+                <div style="inline-block;">
 
-              <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
-              <%# and then @star is passed along to the partial "reviews/stars" %>
-              <% @rating = w.rating %>
-              <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
-              <span>(<%= w.number_of_ratings%>)</span>
-            
-            </div>
-
-          <% end %>
-          </td>
-          <td><%= link_to 'More Info', worker_path(@index, w) %></td>
-
-        </tr>
+                  <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
+                  <%# and then @star is passed along to the partial "reviews/stars" %>
+                  <% @rating = w.rating %>
+                  <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+                  <span>(<%= w.number_of_ratings%>)</span>
+                
+                </div>
+              
+              <% end %>
+            </td>
+            <td><%= link_to 'More Info', worker_path(@index, w) %></td>
+          </tr>
         <% end %> 
       <% end %>
     </tbody>
