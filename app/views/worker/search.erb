@@ -1,50 +1,52 @@
 <h3> Search Results</h3>
 
-<table class="table table-hover">
+<div class = "container p-3 my-3 bg-light text-black">
+  <table class="table table-hover">
 
-  <thead class="thead-dark">
-    <tr>
-        <th>Name</th>
-        <th>Specialty</th>
-        <th>Rating</th>
-        <th>Details</th>
-        <th></th>
-    </tr>
-  </thead>
+    <thead>
+      <tr style="background-color:#7DAFE8;color:#ffffff;">
+          <th>Name</th>
+          <th>Specialty</th>
+          <th>Rating</th>
+          <th>Details</th>
+          <th></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% if @results.size() == 0%>
-      <%= render :partial => 'no_workers_table_data'%>
-    <% else %>
-      <% @results.each do |result|%>
-        <% if result.invisibility == 0 %>
-          <tr>
-            <td><%= result.first_name %> <%= result.last_name %></td>
-            <td><%= result.specialty %></td>
-            <td>
+    <tbody>
+      <% if @results.size() == 0%>
+        <%= render :partial => 'no_workers_table_data'%>
+      <% else %>
+        <% @results.each do |result|%>
+          <% if result.invisibility == 0 %>
+            <tr>
+              <td><%= result.first_name %> <%= result.last_name %></td>
+              <td><%= result.specialty %></td>
+              <td>
 
-              <%# this link takes the user to the worker reviews page%>
+                <%# this link takes the user to the worker reviews page%>
 
-              <%= link_to worker_reviews_path(-1, result) do %>
-                <div style="inline-block;">
+                <%= link_to worker_reviews_path(-1, result) do %>
+                  <div style="inline-block;">
 
-                  <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
-                  <%# and then @star is passed along to the partial "reviews/stars" %>
-                  <% @rating = result.rating %>
-                  <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
-                  <span>(<%= result.number_of_ratings%>)</span>
-                
-                </div>
+                    <%# @star is being assigned the value that is returned after calling the "stars" method in the worker model class %>
+                    <%# and then @star is passed along to the partial "reviews/stars" %>
+                    <% @rating = result.rating %>
+                    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+                    <span>(<%= result.number_of_ratings%>)</span>
+                  
+                  </div>
 
-              <% end %>
-            </td>
+                <% end %>
+              </td>
 
-            <td><%= link_to 'More Info', worker_path(-1, result) %></td>
-          </tr>
+              <td><%= link_to 'More Info', worker_path(-1, result) %></td>
+            </tr>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-  
+    </tbody>
+    
 
-</table>
+  </table>
+</div>
