@@ -38,6 +38,16 @@ class Worker < ApplicationRecord
     inverse_of: :worker
   )
 
+  has_many(
+    :messages,
+    as: :sender
+  )
+
+  has_many(
+    :messages,
+    as: :receiver
+  )
+
   def name
     first_name + " " + last_name
   end

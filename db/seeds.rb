@@ -168,3 +168,10 @@ rev3 = Review.create!(
     pictures: "",
     job: job3
 )
+
+mes1 = Message.create!(
+    subject: "Finished Job",
+    body: "Good Job!",
+    sender: kirk,
+    receiver: builder_bob
+)
