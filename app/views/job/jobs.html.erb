@@ -33,9 +33,7 @@
 <div class="posts">
   <% if @jobs.size() == 0 %>
     <div class="container-fluid p-3 my-3 bg-light text-black">
-      <p>
-        There are no job posts at this time. Come back later.
-      </p>
+      <%= render :partial => 'no_jobs_message'%>
     </div>
   <% else %>
     <% @jobs.each do |job| %>
