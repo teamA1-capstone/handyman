@@ -51,9 +51,12 @@ class WorkerController < ApplicationController
     def ratings_index
       @filter_value = params[:review_value].to_i
       @workers_to_display = []
+      @index = 0
+
       Worker.all.each_with_index do |w,index|
         if w.rating == @filter_value
-          @workers_to_display[index] = w
+          @workers_to_display[@index] = w
+        @index = @index = 1
         end
       end
       
