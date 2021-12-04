@@ -45,6 +45,12 @@
 
             <% @job = job %>
             <%= render :partial => 'job', locals: { job: @job } %>
+
+            <% if customer_signed_in?%>
+              <% if job.customer_id == current_customer.id%>
+                <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
+              <% end %>
+            <% end %>
           
           </div>
         
