@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   $SWITCH = 1
-  $SPECIALTY_TYPES = Array["Electrician", "Light Fixture", "Painter", "Plumber", "Sound System", "Other"]
+  $SPECIALTY_TYPES = Array["Electrician", "Light Fixture", "Painter", "Plumber", "Sound System", "Carpenter", "Computer Repair Servicer", "Other"]
 
   before_action :configure_permitted_parameters, if:  :devise_controller?
 

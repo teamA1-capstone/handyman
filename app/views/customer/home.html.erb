@@ -1,29 +1,74 @@
-<h1>Customer home page</h1>
-<p>
-<ul class="navbar-nav">
-      <% if customer_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Hi, #{current_customer.first_name}", nil, class: 'nav-link' %>
-        </li>
-        <p>
-        <li><%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%></li>
-        </p>
-        <li class="nav-item">
-          <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'nav-link' 'btn btn-primary' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign In', new_customer_session_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign Up', new_customer_registration_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
-</p>
 
-<p>
-  <%= link_to 'Job Board', jobs_path, class: 'btn btn-primary'%>
-</p>
+<style>
+
+  body{
+    background-image: url(<%= asset_path 'home.jpg' %>);
+  }
+
+  #page-container{
+    padding: 10%;
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 400%;
+    }
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 300%;
+    }
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 200%;
+    }
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 150%;
+    }
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    body{
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+  }
+</style>
+
+<body>
+  
+<div class="container-fluid text-light text-center" id='page-container' style="background: rgba(0, 0, 0, 0.5);">
+
+  <h1 class="display-1"><strong>HOME</strong></h1>
+
+  <div class="btn-group-vertical">
+    <% if customer_signed_in? %>
+        <%= link_to "Hi, #{current_customer.first_name}", nil, class: 'btn btn-primary' %>
+        <%= link_to 'My Profile', customer_profile_path, class: 'btn btn-primary'%>   
+        <%= link_to 'Job Board', jobs_path, class: 'btn btn-primary'%>   
+        <%= button_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'btn btn-primary' %>
+    <% else %>
+        <%= link_to 'Job Board', jobs_path, class: 'btn btn-custom-color btn-lg'%>
+    <% end %>
+  </div>
+
+</div>
+</body>
 
 

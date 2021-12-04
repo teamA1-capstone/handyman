@@ -18,13 +18,13 @@ class WorkerController < ApplicationController
 
       # -1 is the value passed when clicking the link to view all workers
       if params[:sort] == "first_name"
-        @workers_to_display = Worker.order(params[:sort])
+        @workers_to_display = Worker.where({invisibility: 0}).order(params[:sort]) 
       elsif params[:sort] == "last_name"
-        @workers_to_display = Worker.order(params[:sort])
+        @workers_to_display = Worker.where({invisibility: 0}).order(params[:sort])
       elsif @index != -1
         @workers_to_display = Worker.where({specialty: $SPECIALTY_TYPES.at(@index)})
       else
-        @workers_to_display = Worker.all
+        @workers_to_display = Worker.where({invisibility: 0})
       end
       
       render :worker_directory
