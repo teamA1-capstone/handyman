@@ -38,6 +38,19 @@
           <%= link_to "Last Name", worker_directory_path(:sort => "last_name"), class: 'dropdown-item'%>
         </div>
       </li>
+
+      <li class="list-inline-item dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          By Review
+        </button>
+        <div class="dropdown-menu">
+          <%= link_to "1-Star Rating", worker_directory_ratings_path(-1,1), class: 'dropdown-item'%>
+          <%= link_to "2-Star Ratings", worker_directory_ratings_path(-1,2), class: 'dropdown-item'%>
+          <%= link_to "3-Star Ratings", worker_directory_ratings_path(-1,3), class: 'dropdown-item'%>
+          <%= link_to "4-Star Ratings", worker_directory_ratings_path(-1,4), class: 'dropdown-item'%>
+          <%= link_to "5-Star Ratings", worker_directory_ratings_path(-1,5), class: 'dropdown-item'%>
+        </div>
+      </li>
     </div>
   </div>
 
