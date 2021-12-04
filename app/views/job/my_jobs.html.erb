@@ -45,7 +45,9 @@
 
             <% @job = job %>
             <%= render :partial => 'job', locals: { job: @job } %>
-          
+
+            <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
+
           </div>
         
         <% end %>
