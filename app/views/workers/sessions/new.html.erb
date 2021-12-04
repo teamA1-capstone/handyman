@@ -1,5 +1,7 @@
 <h1> Worker Sign-in Page </h1>
-<%= link_to "Home", worker_home_path %>
+<%= image_tag "sign-in.jpg", 
+style: 'max-width: 50vw; max-height: 50vh; float: right; display: block;' %>
+
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
