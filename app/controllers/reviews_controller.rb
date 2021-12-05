@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
             flash[:success] = "Review creation successful"
             redirect_to my_jobs_path
         else
-            flash.now[:error] = "Question could not be saved"
+            flash.now[:error] = "Review could not be saved"
             render :new
         end
     end

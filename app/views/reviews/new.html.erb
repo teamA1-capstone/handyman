@@ -39,10 +39,11 @@
 <body>
 
 <%= bootstrap_form_with model: @review, method: :post, url: create_review_path, local: true do |review| %>
-    <p>Based on your experience, rate the worker in the following categories: </p>
+    <p>Based on your experience, rate the worker in the following areas: </p>
 
     <div class="field">
-        <%= review.number_field :skill_rating, label: "Worker Skill Level"%>
+        <p class="h5">Rate worker skill</p>
+        <%= review.number_field :skill_rating, hide_label: true%>
     </div>
     
     <div id="rating">
@@ -58,7 +59,8 @@
     <br>
 
     <div class="field">
-        <%= review.number_field :reliability_rating, label: "How reliable was the Worker?"%>
+        <p class="h5">Rate worker reliability</p>
+        <%= review.number_field :reliability_rating, hide_label: true%>
     </div>
         
     <div id="rating">
@@ -73,7 +75,8 @@
     <br>
 
     <div class="field">
-        <%= review.number_field :focused_rating, label: "How focused was the worker on the job?"%>
+        <p class="h5">Rate worker focus</p>
+        <%= review.number_field :focused_rating, hide_label: true%>
     </div>
        
     <div id="rating">
@@ -88,7 +91,8 @@
     <br>
 
     <div class="field">
-        <%= review.number_field :honesty_rating, label: "How honest do you think the worker was with you?"%>
+        <p class="h5">Quality of work</p>
+        <%= review.number_field :honesty_rating, hide_label: true%>
     </div>
 
     <div id="rating">
@@ -102,8 +106,8 @@
     <br>
     <br>
 
-    <div class="field">
-        <%= review.label "Tell us More about your experience."%>
+    <div class="h1">
+        Tell us more about your experience
     </div>
 
     <div class="field">
@@ -114,8 +118,9 @@
         <%= review.text_area :body%>
     </div>
 
-    <div class="field">
-        <%= review.file_field :pictures, multiple: true %>
+    <div class="field pt-3 pb-3">
+        <!-- add [ multiple: true ] when figure out how to add multiple files -->
+        <%= review.file_field :pictures, hide_label: true, placeholder: 'add a picture'%>
     </div>
 
     <%= review.submit "Submit Review"%>

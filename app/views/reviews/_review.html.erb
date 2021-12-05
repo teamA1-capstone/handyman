@@ -1,44 +1,38 @@
-<div id="review">
-              
-  <h5 style="font-weight:bold;">Review of Worker Performance on the Job</h5>
-  <h6 style="font-weight:bold;"><%= @review.headline%></h6>
+<div class="media container" id="review">
+  <div class="media-body">
+    <h5 class="container p-1 font-weight-bolder">Review of Worker Performance on the Job</h5>
+    <h6 class="container p-1 font-weight-bold"><%= @review.headline%></h6>
 
-  <p><%= @review.body %></p>
+    <p class="container p-3"><%= @review.body %></p>
 
-  <p> Reliability: </p>
+    <div class="container p-3" id="reliability">
+      <p> Reliability: </p>
+      <% @rating = @review.reliability_rating%>
+      <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+    </div>
 
-  <div id="reliability">
-    <% @rating = @review.reliability_rating%>
-    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+    <div class="container p-3" id="honesty">
+      <p> Honesty: </p>
+      <% @rating = @review.honesty_rating%>
+      <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+    </div>
+
+    <div class="container p-3" id="skill" >
+      <p> Skill: </p>
+      <% @rating = @review.skill_rating%>
+      <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+    </div>
+
+    <div class="container p-3" id="focus">
+      <p> Focus: </p>
+      <% @rating = @review.focused_rating%>
+      <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
+    </div>
   </div>
-
-  <br>
-
-  <p> Honesty: </p>
-  
-  <div id="honesty">
-    <% @rating = @review.honesty_rating%>
-    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
-  </div>
-
-  <br>
-
-  <p> Skill: </p>
-
-  <div id="skill" >
-    <% @rating = @review.skill_rating%>
-    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
-  </div>
-
-  <br>
-
-  <p> Focus: </p>
-
-  <div class="focus">
-    <% @rating = @review.focused_rating%>
-    <%= render :partial => 'reviews/rating', locals: { post: @rating } %>
-  </div>
-
-  <!-- there is a picture uploaded, just cant figure out how to display -->
+    <% if @review.pictures.size() != 0%>
+      <% @review.pictures.each do |pic|%>
+        <img src= "<%= asset_path pic.url%>"/>
+      <% end %>
+    <% end %>
 
 </div>
