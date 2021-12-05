@@ -45,4 +45,6 @@ Rails.application.routes.draw do
   get 'home/worker_directory/:specialty_index/:id/worker_reviews', to: 'reviews#index', as: 'worker_reviews'
   get 'home/worker_directory/:specialty_index/:id/worker_reviews/:review_id', to: 'reviews#show', as: 'review'
 
+  get 'home/worker_directory/:specialty_index/reviews/:review_value', to: 'worker#ratings_index', as: 'worker_directory_ratings'
+
 end
