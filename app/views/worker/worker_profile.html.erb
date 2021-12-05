@@ -61,9 +61,7 @@
 </table>
 
 
-<p>
-    <%= link_to 'Edit Profile',edit_worker_registration_path(), class: 'btn btn-primary' %>
-</p>
-<p>
-    <%= link_to 'Home',worker_home_path, class: 'btn btn-primary' %>
-</p>
+<div class="btn-group-vertical">
+    <%= link_to 'Edit Profile', edit_worker_registration_path, class: 'btn btn-dark-red' %>
+    <%= link_to 'My Jobs', worker_jobs_path, class: 'btn btn-dark-red' %>
+</div>

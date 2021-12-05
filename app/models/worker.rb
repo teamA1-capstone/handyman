@@ -35,7 +35,8 @@ class Worker < ApplicationRecord
     :jobs,
     class_name: 'Job',
     foreign_key: 'worker_id',
-    inverse_of: :worker
+    inverse_of: :worker,
+    dependent: :destroy
   )
 
   has_many(
@@ -52,6 +53,16 @@ class Worker < ApplicationRecord
     :messages,
     as: :receiver
   )
+
+  def select_job(job_id)
+    @job = Job.find(job_id)
+    @job.worker_id = id
+    if @job.save
+      flash[:success] = "Job selected!"
+    else
+      flash.now[:error] = "Job selection failed."
+    end
+  end
 
   def name
     first_name + " " + last_name

@@ -31,6 +31,13 @@ class Job < ApplicationRecord
         inverse_of: :jobs
       )
 
+      belongs_to(
+        :worker,
+        class_name: 'Worker',
+        foreign_key: 'worker_id',
+        inverse_of: :jobs
+      )
+
       has_one(
         :reviews,
         class_name: 'Review',

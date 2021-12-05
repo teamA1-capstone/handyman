@@ -52,8 +52,10 @@
         <%# The button will show only when a customer is signed in and they have a job posted.%>
         <% if customer_signed_in?%>
           <% if job.customer_id == current_customer.id%>
-            <td><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></td>
+            <li><%= link_to "Delete", delete_job_path(job), method: :delete, class: "btn btn-custom-color" %></li>
           <% end %>
+        <% elsif worker_signed_in?%>
+          <%= link_to "Add to To-Do list", job_selection_path(job), class: 'btn btn-dark-red'%>
         <% end %>
       </div>
     <% end %>

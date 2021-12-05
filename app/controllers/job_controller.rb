@@ -1,4 +1,6 @@
 class JobController < ApplicationController
+  
+  before_action :authenticate_customer!, except: [:index, :jobs]
 
   def jobs
     @jobs = Job.where("completed = ? AND in_progress = ?", false, false)
@@ -52,14 +54,6 @@ class JobController < ApplicationController
     redirect_to jobs_path
 
   end  
-
-
-  def my_jobs
-    @not_selected_jobs = current_customer.jobs.where("worker_id = ?", 1)
-    @in_progress_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?",false, true)
-    @completed_jobs = current_customer.jobs.where("completed = ? AND in_progress = ?", true, false)
-    render :my_jobs
-  end
 
   def edit
     @job = current_customer.jobs.find(params[:customer_id])

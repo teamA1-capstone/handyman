@@ -1,39 +1,39 @@
 <%# this partial is used to display 5 stars depending on the value of the individual "@rating" provided%>
 
 <% if @rating == 5%>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
 
 <% elsif @rating == 4 %>
 
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
 
 <% elsif @rating == 3 %>
 
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>"id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
 
 <% elsif @rating == 2 %>
 
-  <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>" id="star"/>
-  <img src= "<%= asset_path 'star-fill-grey-with-outline.svg'%>" id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>" id="star"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
 
 <% elsif @rating == 1 %>
 
-  <img src= "<%= asset_path 'star-fill-dark.svg'%>"/>
+  <img src= "<%= asset_path 'star-fill-dark.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
   <img src= "<%= asset_path 'star-blue-outline.svg'%>" id="star"/>
