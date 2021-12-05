@@ -1,65 +1,82 @@
-<h1 class="text-center">Details About <%= @worker.first_name %></h1>
-<p></p>
-<table class="table table-hover ml-4" style="max-width: 25rem;">
 
-  <thead class="thead-dark">
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-    </tr>
-  </thead>
+<div class = "container p-3 my-3 bg-light">
+<h1 class="text-center p-3">Details About <%= @worker.first_name %></h1>
 
-  <tbody>
+  <table class="table text-center w-50 mx-auto">
+
+    <thead class="thead-dark">
       <tr>
-        <td><%= @worker.first_name %> </td>
-        <td><%= @worker.last_name %> </td>
+          <th>First Name</th>
+          <th>Last Name</th>
       </tr>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+        <tr>
+          <td><%= @worker.first_name %> </td>
+          <td><%= @worker.last_name %> </td>
+        </tr>
+    </tbody>
 
-<table class="table table-hover ml-4" style="max-width: 25rem;">
+  </table>
 
-  <thead class="thead-dark">
-    <tr>
-        <th>Email</th>
-    </tr>
-  </thead>
+  <table class="table text-center w-50 mx-auto">
 
-  <tbody>
+    <thead class="thead-dark">
       <tr>
-        <td><%= @worker.email %></td>
+          <th>Email</th>
       </tr>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+        <tr>
+          <td><%= @worker.email %></td>
+        </tr>
+    </tbody>
 
-<table class="table table-hover ml-4" style="max-width: 25rem;">
+  </table>
 
-  <thead class="thead-dark">
-    <tr>
-        <th>Specialty</th>
-    </tr>
-  </thead>
+  <table class="table text-center w-50 mx-auto">
 
-  <tbody>
+    <thead class="thead-dark">
       <tr>
-        <td><%= @worker.specialty %></td>
+          <th>Specialty</th>
       </tr>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+        <tr>
+          <td><%= @worker.specialty %></td>
+        </tr>
+    </tbody>
 
-<p>
-Additional Information
-</p>
+  </table>
 
-<% if @worker.jobs != nil %>
-  <p>
-    <%= link_to 'View Reviews', worker_reviews_path, class: 'btn' %>
-  </p>
+<% if @worker.reviews.size() != 0 %>
+  <div class="card border border-secondary w-50 mx-auto">
+    <div class="card-header bg-light" id="heading">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseOne" onclick="this.blur();">
+          <p>Show Reviews</p>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapse" class="collapse bg-light" aria-labelledby="heading">
+      <div class="card-body">
+        <% @worker.reviews.each do |review|%>
+          <div class="container p-3 mb-5 mt-5" style="border-bottom: 1px solid black;">
+            <% @review = review%>
+            <%= render :partial => 'reviews/review', locals: { review: @review } %>
+            <p class="p-3"> Reviewed by <%= review.customer_name%> </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+    <h3 class= "text-center"> No Available Reviews </h3>
 <% end %>
 
-<p>
-    <%= link_to 'Back',worker_directory_path, class: 'btn btn-primary' %>
-</p>
+</div>

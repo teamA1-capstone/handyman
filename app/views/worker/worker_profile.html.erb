@@ -1,67 +1,77 @@
-<h1 class="text-center"><%= current_worker.first_name %>'s Profile</h1>
+<style>
 
-<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
-    <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Email Address</th>
-    </tr>
-  </thead>
+.table{
+    width: 50%;
+    margin: auto;
+    font-family: Georgia, Garamond
+}
 
-    <tbody>
+</style>
+
+<div class = "container p-3 my-3 bg-light text-black">
+    <h1 class="text-center"><%= current_worker.first_name %>'s Profile</h1>
+
+    <div class="btn-group-vertical" style="margin-left:82%;width:10%;">
+        <%= link_to 'Edit Profile', edit_worker_registration_path, class: 'btn btn-dark-red' %>
+        <%= link_to 'My Jobs', worker_jobs_path, class: 'btn btn-dark-red' %>
+    </div>
+
+    <table class="table text-center w-50 bg-cyan">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><%= current_worker.name %></td>
+                <td><%= current_worker.email %></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center w-50 bg-cyan">
+        <thead class="thead-dark">
+            <tr>
+            <th>Street Address</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+            <td><%= current_worker.street_address %></td>
+            </tr>
+            <thead class="thead-dark">
+                <tr>
+                <th>City/State</th>
+                </tr>
+            </thead>
+            <tr>
+            <td><%= current_worker.city %>, <%= current_worker.state %></td>
+            </tr>
+            <thead class="thead-dark">
+                <tr>
+                <th>Zip Code</th>
+                </tr>
+            </thead>
+            <tr>
+            <td><%= current_worker.zip_code %></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center w-50 bg-cyan">
+        <thead class="thead-dark">
         <tr>
-        <td><%= current_worker.first_name %> <%= current_worker.last_name %></td>
-        <td><%= current_worker.email %></td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
-    <thead class="thead-dark">
-        <tr>
-        <th>Street Address</th>
+        <th>Specialty</th>
         </tr>
     </thead>
 
-    <tbody>
-        <tr>
-        <td><%= current_worker.street_address %></td>
-        </tr>
-        <thead class="thead-dark">
+        <tbody>
             <tr>
-            <th>City/State</th>
+            <td><%= current_worker.specialty %></td>
             </tr>
-        </thead>
-        <tr>
-        <td><%= current_worker.city %>, <%= current_worker.state %></td>
-        </tr>
-        <thead class="thead-dark">
-            <tr>
-            <th>Zip Code</th>
-            </tr>
-        </thead>
-        <tr>
-        <td><%= current_worker.zip_code %></td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="table table-sm table-striped ml-4" style="max-width: 25rem;">
-    <thead class="thead-dark">
-    <tr>
-      <th>Specialty</th>
-    </tr>
-  </thead>
-
-    <tbody>
-        <tr>
-        <td><%= current_worker.specialty %></td>
-        </tr>
-    </tbody>
-</table>
-
-
-<div class="btn-group-vertical">
-    <%= link_to 'Edit Profile', edit_worker_registration_path, class: 'btn btn-dark-red' %>
-    <%= link_to 'My Jobs', worker_jobs_path, class: 'btn btn-dark-red' %>
-</div>
+        </tbody>
+    </table>
