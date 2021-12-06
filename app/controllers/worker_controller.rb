@@ -10,16 +10,22 @@ class WorkerController < ApplicationController
     end
 
     def home
+      if customer_signed_in?
+        flash[:alert] = "You Must Sign Out First"
+        redirect_back(fallback_location: root_path)
+      else
         $SWITCH = 0
         render :worker_home
+    
+      end
     end
-
+    
     def worker_profile
         render :worker_profile
     end
 
     def worker_jobs
-      @not_started_jobs = current_worker.jobs.where("in_progress = ?", false)
+      @not_started_jobs = current_worker.jobs.where("in_progress = ? AND completed = ?", false, false)
       @in_progress_jobs = current_worker.jobs.where("completed = ? AND in_progress = ?",false, true)
       @completed_jobs = current_worker.jobs.where("completed = ? AND in_progress = ?", true, false)
 
